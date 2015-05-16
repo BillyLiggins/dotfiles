@@ -1,0 +1,13 @@
+[color]
+	diff = auto
+[user]
+	name = shivesh
+[core]
+	editor = vim
+	excludesfile = ~/.cvsignore
+[alias]
+        st = status
+        co = checkout
+        br = branch
+        up = rebase
+        ci = commit
