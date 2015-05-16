@@ -2,6 +2,13 @@
 " Shivesh Mandalia
 " http://dougblack.io/words/a-good-vimrc.html
 
+" Launch Config {{{
+" use pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+call pathogen#helptags()
+" }}}
+
 " Colors {{{
 syntax enable           " enable snytax processing
 set background=dark     " dark colour scheme
@@ -52,13 +59,6 @@ set foldnestmax=10      " 10  nested fold max
 " space open/closes folds
 nnoremap <space> za
 set foldmethod=indent   " fold method based on indent level
-" }}}
-
-" Launch Config {{{
-" use pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-call pathogen#helptags()
 " }}}
 
 " CtrlP {{{

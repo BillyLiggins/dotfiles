@@ -2,6 +2,7 @@
 	diff = auto
 [user]
 	name = shivesh
+	email = shivmandalia@hotmail.co.uk
 [core]
 	editor = vim
 	excludesfile = ~/.cvsignore
