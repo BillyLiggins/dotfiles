@@ -21,6 +21,9 @@ nnoremap j gj
 nnoremap k gk
 " delete buffer without closing window
 nnoremap <C-c> :bp\|bd #<CR>
+" keep cursor and window position when switching buffers
+au BufLeave * let b:winview = winsaveview()
+au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 " }}}
 
 " Spacing {{{
@@ -61,6 +64,13 @@ nnoremap <space> za
 set foldmethod=indent   " fold method based on indent level
 " }}}
 
+" Headers {{{
+" tex files
+autocmd BufReadPost,filewritepre *.tex execute "normal ma"
+autocmd BufReadPost,filewritepre *.tex exe "1," . 10 . "g/Last Change:.*/s/Last Change:.*/Last Change " .strftime("%c")
+autocmd bufwritepost,filewritepre *.tex execute "normal ma" | normal zz
+" }}}
+
 " CtrlP {{{
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -81,7 +91,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 " Toggle Syntastic using <leader>E
-nnoremap <leader>E :SyntasticCheck<CR> :Errors<CR> :SyntasticToggleMode<CR>
+nnoremap <leader>E :SyntasticCheck<CR>:Errors<CR>:SyntasticToggleMode<CR>
 
 " Load headers specified by config file
 let g:syntastic_cpp_config_file = '.syntastic_cpp_config'

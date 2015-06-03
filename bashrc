@@ -13,5 +13,6 @@ alias vi="vim"
 alias root="root -l"
 alias hotmail="switch_mailbox hotmail && mutt"
 alias gmail="switch_mailbox gmail && mutt"
+alias open="gnome-open"
 
 eval 'dircolors .dircolors' &>/dev/null
