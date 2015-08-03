@@ -12,6 +12,7 @@ call pathogen#helptags()
 " Colors {{{
 syntax enable           " enable snytax processing
 set background=dark     " dark colour scheme
+" set background=light    " light colour scheme
 colorscheme solarized   " solarized colour scheme
 " }}}
 
@@ -89,6 +90,9 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+
+" C++11 support
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " Toggle Syntastic using <leader>E
 nnoremap <leader>E :SyntasticCheck<CR>:Errors<CR>:SyntasticToggleMode<CR>

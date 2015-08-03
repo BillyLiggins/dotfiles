@@ -54,8 +54,12 @@ flags = [
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x', 'c++',
 '-isystem', '/home/shivesh/programs/pythia8186/include',
-'-isystem', '/home/shivesh/programs/root53428/include',
+#'-isystem', '/home/shivesh/programs/root53428/include',
+'-isystem', '/home/shivesh/programs/root-6.04.00/include',
 '-isystem', '/home/shivesh/programs/GENIE_2_9_0/src',
+'-isystem', '/home/shivesh/programs/fastjet-3.1.0/include',
+'-isystem', '/usr/include',
+'-isystem', '-I/usr/include/python2.7',
 ]
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
