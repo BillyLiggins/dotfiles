@@ -11,8 +11,8 @@ call pathogen#helptags()
 
 " Colors {{{
 syntax enable           " enable snytax processing
-set background=dark     " dark colour scheme
-" set background=light    " light colour scheme
+" set background=dark     " dark colour scheme
+set background=light    " light colour scheme
 colorscheme solarized   " solarized colour scheme
 " }}}
 
@@ -67,9 +67,9 @@ set foldmethod=indent   " fold method based on indent level
 
 " Headers {{{
 " tex files
-autocmd BufReadPost,filewritepre *.tex execute "normal ma"
-autocmd BufReadPost,filewritepre *.tex exe "1," . 10 . "g/Last Change:.*/s/Last Change:.*/Last Change " .strftime("%c")
-autocmd bufwritepost,filewritepre *.tex execute "normal ma" | normal zz
+autocmd bufwritepost,filewritepre *.tex execute "normal ma"
+autocmd bufwritepost,filewritepre *.tex exe "1,10g/Last Change:.*/s/Last Change:.*/Last Change: " .strftime("%c")
+autocmd bufwritepost,filewritepre *.tex execute " normal `a" | normal zz
 " }}}
 
 " CtrlP {{{

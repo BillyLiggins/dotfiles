@@ -60,6 +60,7 @@ flags = [
 '-isystem', '/home/shivesh/programs/fastjet-3.1.0/include',
 '-isystem', '/usr/include',
 '-isystem', '-I/usr/include/python2.7',
+'-isystem', '/home/shivesh/Documents/CMS',
 ]
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
