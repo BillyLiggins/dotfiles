@@ -7,12 +7,23 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 call pathogen#helptags()
+
+" python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
 " }}}
 
 " Colors {{{
 syntax enable           " enable snytax processing
-" set background=dark     " dark colour scheme
-set background=light    " light colour scheme
+set background=dark     " dark colour scheme
+" set background=light    " light colour scheme
 colorscheme solarized   " solarized colour scheme
 " }}}
 
@@ -134,13 +145,15 @@ let g:ycm_show_diagnostics_ui = 0
 " Commentary {{{
 " // only for cpp files
 autocmd FileType cpp set commentstring=//\ %s
+" # for cmake files
+autocmd FileType cmake set commentstring=#\ %s
 " }}}
 
 " Backups {{{
 set backup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set backupskip=/tmp/*,/private/tmp/*
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupdir=~/.tmp
+set backupskip=~/.tmp/*
+set directory=~/.tmp
 set writebackup
 " }}}
 
