@@ -13,10 +13,10 @@ shopt -s direxpand
 # User specific aliases and functions
 alias vi="vim"
 alias root="root -l"
-alias hotmail="switch_mailbox hotmail && mutt"
-alias gmail="switch_mailbox gmail && mutt"
-alias cern="switch_mailbox cern && mutt"
-alias open="gnome-open"
-alias steam-wine="wine /home/shivesh/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &"
+alias grep="grep --color=auto"
+alias open="xdg-open"
+alias spotify="/home/shivesh/Documents/scripts/launch_scripts/spotify.sh"
+alias skype="/home/shivesh/Documents/scripts/launch_scripts/skype.sh"
 
-eval 'dircolors .dircolors' &>/dev/null
+export LS_COLORS=""
+eval $(dircolors ~/.dircolors) &>/dev/null

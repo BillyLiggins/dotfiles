@@ -110,6 +110,7 @@ nnoremap <leader>E :SyntasticCheck<CR>:Errors<CR>:SyntasticToggleMode<CR>
 
 " Load headers specified by config file
 let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
+let g:syntastic_c_config_file = '.syntastic_c_config'
 " }}}
 
 " Airline {{{

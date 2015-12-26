@@ -1,11 +1,14 @@
 [color]
 	diff = auto
+	status = auto
+	branch = auto
 [user]
 	name = shivesh
 	email = s.p.mandalia@qmul.ac.uk
 [core]
 	editor = vim
 	excludesfile = ~/.cvsignore
+	pager = less -r
 [alias]
         st = status
         co = checkout
