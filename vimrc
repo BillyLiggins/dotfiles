@@ -55,6 +55,9 @@ set showmatch           " highlight matching [{()}]
 set colorcolumn=79      " show column at 79 characters
 " load filetype-specific indent files
 filetype plugin indent on
+set mouse=""
+scriptencoding utf-8
+set encoding=utf-8
 " }}}
 
 " Searching {{{
@@ -79,7 +82,7 @@ set foldmethod=indent   " fold method based on indent level
 " Headers {{{
 " tex files
 autocmd bufwritepost,filewritepre *.tex execute "normal ma"
-autocmd bufwritepost,filewritepre *.tex exe "1,10g/Last Change:.*/s/Last Change:.*/Last Change: " .strftime("%c")
+autocmd bufwritepost,filewritepre *.tex exe "1,10g/Last Change:.*/s/Last Change:.*/Last Change: " .strftime("%a %d %b %Y %T %Z")
 autocmd bufwritepost,filewritepre *.tex execute " normal `a" | normal zz
 " }}}
 
