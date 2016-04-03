@@ -43,6 +43,8 @@ set shiftwidth=4        " behaviour of >>, << and ==
 set softtabstop=4       " number of space in tab when editing
 set expandtab           " tabs are spaces
 set textwidth=79        " text width to 79 characters
+" Textwidth of 150 characters for python files
+autocmd bufreadpre *.py setlocal textwidth=150
 " }}}
 
 " UI Config {{{
