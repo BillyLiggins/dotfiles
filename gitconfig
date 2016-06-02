@@ -1,14 +1,9 @@
-[color]
-	diff = auto
 [user]
-	name = shivesh
-	email = s.p.mandalia@qmul.ac.uk
+	name = Billy Liggins
+	email = Billyliggins@gmail.com
+[color]
+	ui = auto
 [core]
 	editor = vim
-	excludesfile = ~/.cvsignore
-[alias]
-        st = status
-        co = checkout
-        br = branch
-        up = rebase
-        ci = commit
+[push]
+	default = matching

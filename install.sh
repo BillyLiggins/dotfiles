@@ -7,7 +7,7 @@ for file in $DIR/*; do
         continue
     fi
     echo "Creating symlink to $file"
-    ln -sfn $file .$filename
+    ln -sfn $file tester/.$filename
 done
 
 source ~/.bashrc

@@ -1,175 +1,152 @@
-" .vimrc
-" Shivesh Mandalia
-" http://dougblack.io/words/a-good-vimrc.html
+no <down> <Nop>
 
-" Launch Config {{{
-" use pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-call pathogen#helptags()
+no <left> <Nop>
+no <right> <Nop>
+no <up> <Nop>
 
-" python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
+ino <down> <Nop>
+ino <left> <Nop>
+ino <right> <Nop>
+ino <up> <Nop>
 
-" }}}
 
-" Colors {{{
-syntax enable           " enable snytax processing
-set background=dark     " dark colour scheme
-" set background=light    " light colour scheme
-colorscheme solarized   " solarized colour scheme
-" }}}
 
-" Movement {{{
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-" delete buffer without closing window
-nnoremap <C-c> :bp\|bd #<CR>
-" keep cursor and window position when switching buffers
-au BufLeave * let b:winview = winsaveview()
-au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-" }}}
+"===================Leader===================
+let mapleader=","
+"============================================
 
-" Spacing {{{
-set shiftwidth=4        " behaviour of >>, << and ==
-set softtabstop=4       " number of space in tab when editing
-set expandtab           " tabs are spaces
-set textwidth=79        " text width to 79 characters
-" }}}
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" UI Config {{{
-set laststatus=2        " always show status line
-set number              " show line number of current line
-set showcmd             " show command in bottom bar
-set cursorline          " highlight current line
-set wildmenu            " visual autocomplete for command menu
-set showmatch           " highlight matching [{()}]
-set colorcolumn=79      " show column at 79 characters
-" load filetype-specific indent files
-filetype plugin indent on
-" }}}
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" Searching {{{
-set incsearch           " search as characters are entered
-set hlsearch            " highlight matches
-" turn off search highlight
-let mapleader=","       " leader is comma
-nnoremap <leader><space> :nohlsearch<CR>
-" look for ctags up to ~ directory
-set tags=./tags;$HOME
-" }}}
+" let Vundle manage Vundle, required
 
-" Folding {{{
-set foldenable          " enable folding
-set foldlevelstart=99   " open most folds by default
-set foldnestmax=10      " 10  nested fold max
-" space open/closes folds
-nnoremap <space> za
-set foldmethod=indent   " fold method based on indent level
-" }}}
 
-" Headers {{{
-" tex files
-autocmd bufwritepost,filewritepre *.tex execute "normal ma"
-autocmd bufwritepost,filewritepre *.tex exe "1,10g/Last Change:.*/s/Last Change:.*/Last Change: " .strftime("%c")
-autocmd bufwritepost,filewritepre *.tex execute " normal `a" | normal zz
-" }}}
+Plugin 'VundleVim/Vundle.vim'
 
-" CtrlP {{{
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-" }}}
+Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'myusuf3/numbers.vim'
+"Plugin 'scrooloose/syntastic' 
+Plugin 'Valloric/YouCompleteMe' 
+Plugin 'vim-scripts/tComment' "Comment easily with gcc
+Plugin 'lfilho/cosco.vim'
+Plugin 'tpope/vim-surround' 
+Plugin 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'ervandew/supertab' " this clashes with snipmate
+Plugin 'chriskempson/base16-vim'
+Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plugin 'easymotion/vim-easymotion'
 
-" Syntastic {{{
-" Errors appear in statusline
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
 
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+" Bundle 'LucHermitte/lh-vim-lib'
+" Bundle 'LucHermitte/VimFold4C'
 
-" C++11 support
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
+call vundle#end()            " required 
+filetype plugin indent on    " required
 
-" Toggle Syntastic using <leader>E
-nnoremap <leader>E :SyntasticCheck<CR>:Errors<CR>:SyntasticToggleMode<CR>
 
-" Load headers specified by config file
-let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
-" }}}
 
-" Airline {{{
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" Show buffer number
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-" Key mappings for buffer numbers
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-" enable/disable syntastic integration
-let g:airline#extensions#syntastic#enabled = 1
-" }}}
 
-" YouCompleteMe {{{
-" autocomplete for c family
+map <silent> <C-n> :NERDTreeToggle<cr>
+map <CR> o
+
+""" SYSTEM CLIPBOARD COPY & PASTE SUPPORT
+set pastetoggle=<F2> "F2 before pasting to preserve indentation
+"Copy paste to/from clipboard
+vnoremap <C-c> "*y
+map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
+map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
+
+set background=dark
+set number
+syntax on
+
+
+" air-line
+let g:airline_powerline_fonts = 1
+
+"let g:airline_theme='wombat'
+let g:airline_theme='distinguished'
+
+
+
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+"let g:airline_left_sep = '<U+E0B0>'
+" let g:airline_left_alt_sep = '<U+E0B1>'
+" let g:airline_right_sep = '<U+E0B2>'
+" let g:airline_right_alt_sep = '<U+E0B3>'
+" let g:airline_symbols.branch = '<U+E0A0>'
+" let g:airline_symbols.readonly = '<U+E0A2>'
+" let g:airline_symbols.linenr = '<U+E0A1>'
+
+set t_Co=256
+
+
+let g:ycm_confirm_extra_conf = 0 
 let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
-" remap make run to F4
-nnoremap <F4> :make run<cr>
-" turn off YCM diagnostic display features as it conflicts with Syntastic
 let g:ycm_show_diagnostics_ui = 0
-" }}}
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
 
-" Commentary {{{
-" // only for cpp files
-autocmd FileType cpp set commentstring=//\ %s
-" # for cmake files
-autocmd FileType cmake set commentstring=#\ %s
-" }}}
+let g:syntastic_cpp_config_file ='.syntastic_cpp_config'
 
-" Backups {{{
-set backup
-set backupdir=~/.tmp
-set backupskip=~/.tmp/*
-set directory=~/.tmp
-set writebackup
-" }}}
 
-" Misc {{{
-" allow switching buffers without saving
-set hidden
-" allow backspace over indent and end of line
-set backspace=indent,eol
-" save session
-nnoremap <leader>s :mksession<CR>
-" Remember cursor location
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" Rebind yank to end of line
-nnoremap Y y$
-" Rebind redo
-nnoremap U <C-r>
-" }}}
 
-" vim:foldmethod=marker:foldlevel=0
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+set laststatus=2
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='10,\"100,:20,%,n~/.viminfo
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
