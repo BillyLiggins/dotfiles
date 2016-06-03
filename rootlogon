@@ -1,6 +1,0 @@
-{
-    cout << "******************************" << endl;
-    cout << " * Welcome to ROOT v" << gROOT->GetVersion() << " *" << endl;
-    cout << "******************************" << endl;
-    cout << endl;
-}
