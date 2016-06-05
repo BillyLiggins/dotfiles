@@ -61,6 +61,7 @@ filetype plugin indent on    " required
 
 map <silent> <C-n> :NERDTreeToggle<cr>
 map <CR> o
+nnoremap <Space> za
 
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
