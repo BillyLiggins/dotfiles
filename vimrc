@@ -63,7 +63,24 @@ map <silent> <C-n> :NERDTreeToggle<cr>
 map <CR> o
 nnoremap <Space> za
 map <Leader>= mmggVG9<ggVG=`m
-
+" momentment shortcuts
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+" for moving along tabs
+map <C-S-]> gt
+map <C-S-[> gT
+map <C-1> 1gt
+map <C-2> 2gt
+map <C-3> 3gt
+map <C-4> 4gt
+map <C-5> 5gt
+map <C-6> 6gt
+map <C-7> 7gt
+map <C-8> 8gt
+map <C-9> 9gt
+map <C-0> :tablast<CR>
 
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
