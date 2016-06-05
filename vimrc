@@ -56,13 +56,14 @@ Bundle "honza/vim-snippets"
 call vundle#end()            " required 
 filetype plugin indent on    " required
 
-
+set hidden
 
 
 map <silent> <C-n> :NERDTreeToggle<cr>
 map <CR> o
 nnoremap <Space> za
 map <Leader>= mmggVG9<ggVG=`m
+
 
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
