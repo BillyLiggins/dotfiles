@@ -82,6 +82,29 @@ map <C-8> 8gt
 map <C-9> 9gt
 map <C-0> :tablast<CR>
 
+" These mappings help opening files from current working directory.
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
+
+
+" :Wrap sets nice wrapping.
+command! -nargs=* Wrap set wrap linebreak nolist
+
+""" Moving inlines
+" vmap <D-j> gj
+" vmap <D-k> gk
+" vmap <D-4> g$
+" vmap <D-6> g^
+" vmap <D-0> g^
+" nmap <D-j> gj
+" nmap <D-k> gk
+" nmap <D-4> g$
+" nmap <D-6> g^
+" nmap <D-0> g^
+
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
 "Copy paste to/from clipboard
