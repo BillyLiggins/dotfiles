@@ -93,7 +93,7 @@ map <leader>et :tabe %%
 " :Wrap sets nice wrapping.
 command! -nargs=* Wrap set wrap linebreak nolist
 
-""" Moving inlines
+""" Moving in lines
 " vmap <D-j> gj
 " vmap <D-k> gk
 " vmap <D-4> g$
@@ -111,6 +111,11 @@ if executable("par")
 set formatprg=par\ -w78
 endif
 "
+" Toggle spell checking on and off with `,s`
+nmap <silent> <leader>s :set spell!<CR>
+
+" Set region to British English
+set spelllang=en_gb
 
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
