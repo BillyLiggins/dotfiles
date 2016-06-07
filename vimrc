@@ -105,6 +105,13 @@ command! -nargs=* Wrap set wrap linebreak nolist
 " nmap <D-6> g^
 " nmap <D-0> g^
 
+"sets par as the qg formater program, gw is still assigned to vims enturnal
+"formater.
+if executable("par")
+set formatprg=par\ -w78
+endif
+"
+
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
 "Copy paste to/from clipboard
