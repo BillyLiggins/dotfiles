@@ -44,6 +44,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'godlygeek/tabular.git'
 
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -117,6 +119,28 @@ nmap <silent> <leader>s :set spell!<CR>
 " Set region to British English
 set spelllang=en_gb
 
+"Editing vimrc
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+nmap gV `[v`]
+"Tabular shortcuts
+if exists(":Tabularize")
+	nmap <Leader>a= :Tabularize /=<CR>
+	vmap <Leader>a= :Tabularize /=<CR>
+	nmap <Leader>a: :Tabularize /:\zs<CR>
+	vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
 "Copy paste to/from clipboard
