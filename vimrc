@@ -46,6 +46,7 @@ Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'godlygeek/tabular.git'
+Plugin 'sjl/gundo.vim'
 
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -155,6 +156,8 @@ function! s:align()
   endif
 endfunction
 
+"Gundo mapping
+nnoremap <F5> :GundoToggle<CR>
 
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
