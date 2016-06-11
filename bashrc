@@ -189,6 +189,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 alias rc="vim ~/.bashrc"
+alias vrc="vim ~/.vimrc"
 alias today='grep -h -d skip `date +%m/%d` /usr/share/calendar/*'
 
 #source ~/root/bin/thisroot.sh
