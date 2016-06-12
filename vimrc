@@ -59,6 +59,10 @@ Bundle "honza/vim-snippets"
 call vundle#end()            " required 
 filetype plugin indent on    " required
 
+"toggle search highlighting.
+set hlsearch!
+
+nnoremap <F3> :set hlsearch!<CR>
 set hidden
 
 
