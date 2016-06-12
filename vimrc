@@ -1,14 +1,17 @@
-no <down> <Nop>
-
-no <left> <Nop>
-no <right> <Nop>
-no <up> <Nop>
-
-ino <down> <Nop>
-ino <left> <Nop>
-ino <right> <Nop>
-ino <up> <Nop>
-
+" no <down> <Nop>
+" no <left> <Nop>
+" no <right> <Nop>
+" no <up> <Nop>
+"
+" ino <down> <Nop>
+" ino <left> <Nop>
+" ino <right> <Nop>
+" ino <up> <Nop>
+" Get off my lawn
+nnoremap <Left> :echoe "Stop being lazy use h"<CR>
+nnoremap <Right> :echoe "Stop being lazy use l"<CR>
+nnoremap <Up> :echoe "Stop being lazy use k"<CR>
+nnoremap <Down> :echoe "Stop being lazy use j"<CR>
 
 
 "===================Leader===================
