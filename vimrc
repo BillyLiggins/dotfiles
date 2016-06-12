@@ -62,7 +62,7 @@ filetype plugin indent on    " required
 "toggle search highlighting.
 set hlsearch!
 
-nnoremap <F3> :set hlsearch!<CR>
+nnoremap <Leader>l :set hlsearch!<CR>
 set hidden
 
 
@@ -233,12 +233,14 @@ set laststatus=2
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
+
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
 "  "100 :  will save up to 100 lines for each register
 "  :20  :  up to 20 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
+
 set viminfo='10,\"100,:20,%,n~/.viminfo
 function! ResCur()
   if line("'\"") <= line("$")
