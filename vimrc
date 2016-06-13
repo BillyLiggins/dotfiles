@@ -37,7 +37,9 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'myusuf3/numbers.vim'
 "Plugin 'scrooloose/syntastic' 
-Plugin 'Valloric/YouCompleteMe' 
+" if $(hostname) == "heppc"* 
+" 	Plugin 'Valloric/YouCompleteMe' 
+" endif
 Plugin 'vim-scripts/tComment' "Comment easily with gcc
 Plugin 'lfilho/cosco.vim'
 Plugin 'tpope/vim-surround' 
