@@ -1,5 +1,5 @@
 #For QMUL Computers.
-if [[ $(hostname) = "heppc400.ph.qmul.ac.uk"]]; then 
+if [[ $(hostname) = "heppc400.ph.qmul.ac.uk" ]]; then 
 
 	alias me='liggins@hep.ph.qmul.ac.uk'
 	alias in400='ssh heppc400 -XY'
@@ -34,7 +34,7 @@ if [[ $(hostname) = "heppc400.ph.qmul.ac.uk"]]; then
 fi
 
 #From Laptop
-if [[ $(hostname) = "billy-Inspiron-5423"]]; then 
+if [[ $(hostname) = "billy-Inspiron-5423" ]]; then 
 	alias open='xdg-open'
 	alias install='apt-get install'
 	alias inx='ssh liggins@hep.ph.qmul.ac.uk -XY'
@@ -52,6 +52,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 alias rc="vim ~/.bashrc"
+alias vrc="vim ~/.vimrc"
 alias today='grep -h -d skip `date +%m/%d` /usr/share/calendar/*'
 
 alias bbc='lynx http://news.bbc.co.uk/text_only.stm'
