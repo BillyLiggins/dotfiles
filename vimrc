@@ -70,6 +70,10 @@ set hidden
 
 
 map <silent> <C-n> :NERDTreeToggle<cr>
+let g:NERDTreeToggleQuitOnOpen=1
+let NERDTreeShowHidden=1
+nmap <silent> <leader>y :NERDTreeFind<cr>
+
 " map <CR> o " This mapping is bad for command line window.
 nnoremap <Space> za
 map <Leader>= mmggVG9<ggVG=`m
