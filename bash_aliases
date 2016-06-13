@@ -1,7 +1,9 @@
 #For QMUL Computers.
-if [[ $(hostname) = "heppc400.ph.qmul.ac.uk" ]]; then 
+# if [[ $(hostname) = "heppc400.ph.qmul.ac.uk" ]]; then 
+if [[ $(hostname) = "heppc"* ]]; then 
 
 	alias me='liggins@hep.ph.qmul.ac.uk'
+	alias in='ssh liggins@hep.ph.qmul.ac.uk'
 	alias in400='ssh heppc400 -XY'
 	alias s1='cd /data/liggins/SummerInternship/BiPo/billSims'
 	alias srat='source /data/snoplus/softwareSL6/env_rat-5.3.1.sh'

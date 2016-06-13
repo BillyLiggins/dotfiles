@@ -119,7 +119,7 @@ fi
 # alias open='xdg-open'
 # alias install='apt-get install'
 # alias inx='ssh liggins@hep.ph.qmul.ac.uk -XY'
-alias in='ssh liggins@hep.ph.qmul.ac.uk'
+# alias in='ssh liggins@hep.ph.qmul.ac.uk'
 # alias inDesktop='ssh billy@billy-Vostro-430'
 # alias inDesktopx='ssh -XY billy@billy-Vostro-430'
 # alias m='less'
