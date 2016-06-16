@@ -65,10 +65,11 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 "toggle search highlighting.
-set hlsearch!
+" set hlsearch!
 
 nnoremap <Leader>l :set hlsearch!<CR>
 set hidden
+set tabstop =2
 
 
 map <silent> <C-n> :NERDTreeToggle<cr>
@@ -79,6 +80,7 @@ nmap <silent> <leader>y :NERDTreeFind<cr>
 " map <CR> o " This mapping is bad for command line window.
 nnoremap <Space> za
 map <Leader>= mmggVG9<ggVG=`m
+map <Leader>gq mmggVGgq`m
 " momentment shortcuts
 map <C-h> <C-w>h
 map <C-j> <C-w>j
