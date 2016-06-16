@@ -48,6 +48,7 @@ if [[ $(hostname) = "billy-Inspiron-5423" ]]; then
 	export PYTHONPATH=/home/billy/echidna:$PYTHONPATH
 fi
 
+alias com='sh bin/compile.sh'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
