@@ -150,7 +150,7 @@ NC='\e[0m' # No Color
 # WELCOME SCREEN
 ################################################## #####
 
-clear
+# clear
 
 echo -ne "${LIGHTGREEN}" "Hello, $USER. today is, "; date
 echo -e "${WHITE}"; cal ;
