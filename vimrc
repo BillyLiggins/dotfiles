@@ -79,6 +79,7 @@ nmap <silent> <leader>y :NERDTreeFind<cr>
 nnoremap <Space> za
 map <Leader>= mmggVG9<ggVG=`m
 map <Leader>gq mmggVGgq`m
+map <Leader>gq gqip
 " momentment shortcuts
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -269,6 +270,12 @@ augroup END
 "     nnoremap  :  ;
 		
 
+" LaTeX (rubber) macro for compiling
+nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
+
+" View PDF macro; '%:r' is current file's root (base) name.
+nnoremap <leader>p :!evince %:r.pdf -w &<CR><CR>
+" nnoremap <leader>v :!mupdf %:r.pdf &<CR><CR>
 
 " function! Smart_TabComplete()
 "   let line = getline('.')                         " current line
