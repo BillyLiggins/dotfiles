@@ -44,6 +44,7 @@ if [[ $(hostname) = "billy-Inspiron-5423" ]]; then
 	alias inx='ssh liggins@hep.ph.qmul.ac.uk -XY'
 	alias in='ssh liggins@hep.ph.qmul.ac.uk'
 	alias phd='cd ~/workspace/PhD'
+	alias oxsx='cd ~/workspace/PhD/oxsx'
 	alias fit="cd ~/workspace/PhD/fitting"
 	alias srat="source ~/snoing/install/env_rat-dev.sh"
 	alias sroot="source ~/root/bin/thisroot.sh"
