@@ -66,8 +66,6 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 "toggle search highlighting.
-" set hlsearch!
-
 nnoremap <Leader>l :set hlsearch!<CR>
 set hidden
 set tabstop =2
@@ -266,6 +264,12 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+
+" "====[ Swap : and ; to make colon commands easier to type ]======
+"
+"     nnoremap  ;  :
+"     nnoremap  :  ;
+		
 
 " LaTeX (rubber) macro for compiling
 nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
