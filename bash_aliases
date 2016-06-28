@@ -10,6 +10,7 @@ if [[ $(hostname) = "heppc"* ]]; then
 	alias cssrat='source /data/snoplus/liggins/year1/CSS/rat/css_rat.sh'
 	alias y1='cd /data/snoplus/liggins/year1'
 	alias css='cd /data/snoplus/liggins/year1/CSS'
+	alias report='cd ~/Documents/reports/'
 	alias fit='cd /data/snoplus/liggins/year1/fitting'
 	alias mark='cd /data/hays/Teaching/2015-16/marking/SectionC/'
 	alias in400x='ssh -XY heppc400'
