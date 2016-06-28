@@ -12,7 +12,12 @@ nnoremap <Left> :echoe "Stop being lazy use h"<CR>
 nnoremap <Right> :echoe "Stop being lazy use l"<CR>
 nnoremap <Up> :echoe "Stop being lazy use k"<CR>
 nnoremap <Down> :echoe "Stop being lazy use j"<CR>
+vmap <expr> <LEFT> DVB_Drag('left')
+vmap <expr> <RIGHT> DVB_Drag('right')
+vmap <expr> <DOWN> DVB_Drag('down')
+vmap <expr> <UP> DVB_Drag('up')
 
+vmap <expr>	D DVB_Duplicate()
 
 "===================Leader===================
 let mapleader=","
@@ -98,6 +103,8 @@ map <C-7> 7gt
 map <C-8> 8gt
 map <C-9> 9gt
 map <C-0> :tablast<CR>
+
+map U <C-R>
 
 " These mappings help opening files from current working directory.
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
@@ -263,18 +270,86 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+"++++ Additions from Instantly better vim +++
+    " This rewires n and N to do the highlighing...
+    nnoremap <silent> n   n:call HLNext(0.4)<cr>
+    nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+
+    " " EITHER blink the line containing the match...
+    " function! HLNext (blinktime)
+    "     set invcursorline
+    "     redraw
+    "     exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    "     set invcursorline
+    "     redraw
+    " endfunction
+    "
+    " OR ELSE ring the match in red...
+    function! HLNext (blinktime)
+        highlight RedOnRed ctermfg=red ctermbg=red
+        let [bufnum, lnum, col, off] = getpos('.')
+        let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+        echo matchlen
+        let ring_pat = (lnum > 1 ? '\%'.(lnum-1).'l\%>'.max([col-4,1]) .'v\%<'.(col+matchlen+3).'v.\|' : '')
+                \ . '\%'.lnum.'l\%>'.max([col-4,1]) .'v\%<'.col.'v.'
+                \ . '\|'
+                \ . '\%'.lnum.'l\%>'.max([col+matchlen-1,1]) .'v\%<'.(col+matchlen+3).'v.'
+                \ . '\|'
+                \ . '\%'.(lnum+1).'l\%>'.max([col-4,1]) .'v\%<'.(col+matchlen+3).'v.'
+        let ring = matchadd('RedOnRed', ring_pat, 101)
+        redraw
+        exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+        call matchdelete(ring)
+        redraw
+    endfunction
+    "
+    " " OR ELSE briefly hide everything except the match...
+    " function! HLNext (blinktime)
+    "     highlight BlackOnBlack ctermfg=black ctermbg=black
+    "     let [bufnum, lnum, col, off] = getpos('.')
+    "     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    "     let hide_pat = '\%<'.lnum.'l.'
+    "             \ . '\|'
+    "             \ . '\%'.lnum.'l\%<'.col.'v.'
+    "             \ . '\|'
+    "             \ . '\%'.lnum.'l\%>'.(col+matchlen-1).'v.'
+    "             \ . '\|'
+    "             \ . '\%>'.lnum.'l.'
+    "     let ring = matchadd('BlackOnBlack', hide_pat, 101)
+    "     redraw
+    "     exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    "     call matchdelete(ring)
+    "     redraw
+    " endfunction
+
+    " " OR ELSE just highlight the match in red...
+    " function! HLNext (blinktime)
+    "     let [bufnum, lnum, col, off] = getpos('.')
+    "     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    "     let target_pat = '\c\%#\%('.@/.'\)'
+    "     let ring = matchadd('WhiteOnRed', target_pat, 101)
+    "     redraw
+    "     exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    "     call matchdelete(ring)
+    "     redraw
+    " endfunction
 
 " "====[ Swap : and ; to make colon commands easier to type ]======
 "
 "     nnoremap  ;  :
 "     nnoremap  :  ;
-		
+
+vmap <expr>	 ++ VMATH_YankAndAnalyse ()
+nmap 				 ++ vip++
+
 
 " LaTeX (rubber) macro for compiling
 nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
 
 " View PDF macro; '%:r' is current file's root (base) name.
-nnoremap <leader>p :!evince %:r.pdf -w &<CR><CR>
+nnoremap <leader>p :!evince %:r.pdf &<CR><CR>
+" nnoremap <leader>p :!evince %:r.pdf -w &<CR><CR>
 " nnoremap <leader>v :!mupdf %:r.pdf &<CR><CR>
 
 " function! Smart_TabComplete()
