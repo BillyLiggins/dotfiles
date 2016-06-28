@@ -56,6 +56,7 @@ Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'godlygeek/tabular.git'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'sjl/gundo.vim'
 
 Bundle "MarcWeber/vim-addon-mw-utils"
