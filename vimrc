@@ -1,15 +1,23 @@
-no <down> <Nop>
+" no <down> <Nop>
+" no <left> <Nop>
+" no <right> <Nop>
+" no <up> <Nop>
+"
+" ino <down> <Nop>
+" ino <left> <Nop>
+" ino <right> <Nop>
+" ino <up> <Nop>
+" Get off my lawn
+nnoremap <Left> :echoe "Stop being lazy use h"<CR>
+nnoremap <Right> :echoe "Stop being lazy use l"<CR>
+nnoremap <Up> :echoe "Stop being lazy use k"<CR>
+nnoremap <Down> :echoe "Stop being lazy use j"<CR>
+vmap <expr> <LEFT> DVB_Drag('left')
+vmap <expr> <RIGHT> DVB_Drag('right')
+vmap <expr> <DOWN> DVB_Drag('down')
+vmap <expr> <UP> DVB_Drag('up')
 
-no <left> <Nop>
-no <right> <Nop>
-no <up> <Nop>
-
-ino <down> <Nop>
-ino <left> <Nop>
-ino <right> <Nop>
-ino <up> <Nop>
-
-
+vmap <expr>	D DVB_Duplicate()
 
 "===================Leader===================
 let mapleader=","
@@ -34,7 +42,9 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'myusuf3/numbers.vim'
 "Plugin 'scrooloose/syntastic' 
-Plugin 'Valloric/YouCompleteMe' 
+" if $(hostname) == "heppc"* 
+" 	Plugin 'Valloric/YouCompleteMe' 
+" endif
 Plugin 'vim-scripts/tComment' "Comment easily with gcc
 Plugin 'lfilho/cosco.vim'
 Plugin 'tpope/vim-surround' 
@@ -46,6 +56,7 @@ Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'godlygeek/tabular.git'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'sjl/gundo.vim'
 
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -59,13 +70,22 @@ Bundle "honza/vim-snippets"
 call vundle#end()            " required 
 filetype plugin indent on    " required
 
+"toggle search highlighting.
+nnoremap <Leader>l :set hlsearch!<CR>
 set hidden
+set tabstop =2
 
 
 map <silent> <C-n> :NERDTreeToggle<cr>
+let g:NERDTreeToggleQuitOnOpen=1
+let NERDTreeShowHidden=1
+nmap <silent> <leader>y :NERDTreeFind<cr>
+
 " map <CR> o " This mapping is bad for command line window.
 nnoremap <Space> za
 map <Leader>= mmggVG9<ggVG=`m
+map <Leader>gq mmggVGgq`m
+map <Leader>gq gqip
 " momentment shortcuts
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -84,6 +104,8 @@ map <C-7> 7gt
 map <C-8> 8gt
 map <C-9> 9gt
 map <C-0> :tablast<CR>
+
+map U <C-R>
 
 " These mappings help opening files from current working directory.
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
@@ -229,12 +251,14 @@ set laststatus=2
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
+
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
 "  "100 :  will save up to 100 lines for each register
 "  :20  :  up to 20 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
+
 set viminfo='10,\"100,:20,%,n~/.viminfo
 function! ResCur()
   if line("'\"") <= line("$")
@@ -247,3 +271,108 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+"++++ Additions from Instantly better vim +++
+    " This rewires n and N to do the highlighing...
+    nnoremap <silent> n   n:call HLNext(0.4)<cr>
+    nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+
+    " " EITHER blink the line containing the match...
+    " function! HLNext (blinktime)
+    "     set invcursorline
+    "     redraw
+    "     exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    "     set invcursorline
+    "     redraw
+    " endfunction
+    "
+    " OR ELSE ring the match in red...
+    function! HLNext (blinktime)
+        highlight RedOnRed ctermfg=red ctermbg=red
+        let [bufnum, lnum, col, off] = getpos('.')
+        let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+        echo matchlen
+        let ring_pat = (lnum > 1 ? '\%'.(lnum-1).'l\%>'.max([col-4,1]) .'v\%<'.(col+matchlen+3).'v.\|' : '')
+                \ . '\%'.lnum.'l\%>'.max([col-4,1]) .'v\%<'.col.'v.'
+                \ . '\|'
+                \ . '\%'.lnum.'l\%>'.max([col+matchlen-1,1]) .'v\%<'.(col+matchlen+3).'v.'
+                \ . '\|'
+                \ . '\%'.(lnum+1).'l\%>'.max([col-4,1]) .'v\%<'.(col+matchlen+3).'v.'
+        let ring = matchadd('RedOnRed', ring_pat, 101)
+        redraw
+        exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+        call matchdelete(ring)
+        redraw
+    endfunction
+    "
+    " " OR ELSE briefly hide everything except the match...
+    " function! HLNext (blinktime)
+    "     highlight BlackOnBlack ctermfg=black ctermbg=black
+    "     let [bufnum, lnum, col, off] = getpos('.')
+    "     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    "     let hide_pat = '\%<'.lnum.'l.'
+    "             \ . '\|'
+    "             \ . '\%'.lnum.'l\%<'.col.'v.'
+    "             \ . '\|'
+    "             \ . '\%'.lnum.'l\%>'.(col+matchlen-1).'v.'
+    "             \ . '\|'
+    "             \ . '\%>'.lnum.'l.'
+    "     let ring = matchadd('BlackOnBlack', hide_pat, 101)
+    "     redraw
+    "     exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    "     call matchdelete(ring)
+    "     redraw
+    " endfunction
+
+    " " OR ELSE just highlight the match in red...
+    " function! HLNext (blinktime)
+    "     let [bufnum, lnum, col, off] = getpos('.')
+    "     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    "     let target_pat = '\c\%#\%('.@/.'\)'
+    "     let ring = matchadd('WhiteOnRed', target_pat, 101)
+    "     redraw
+    "     exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    "     call matchdelete(ring)
+    "     redraw
+    " endfunction
+
+" "====[ Swap : and ; to make colon commands easier to type ]======
+"
+"     nnoremap  ;  :
+"     nnoremap  :  ;
+
+vmap <expr>	 ++ VMATH_YankAndAnalyse ()
+nmap 				 ++ vip++
+
+
+" LaTeX (rubber) macro for compiling
+nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
+
+" View PDF macro; '%:r' is current file's root (base) name.
+nnoremap <leader>p :!evince %:r.pdf &<CR><CR>
+" nnoremap <leader>p :!evince %:r.pdf -w &<CR><CR>
+" nnoremap <leader>v :!mupdf %:r.pdf &<CR><CR>
+
+" function! Smart_TabComplete()
+"   let line = getline('.')                         " current line
+"
+"   let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+"                                                   " line to one character right
+"                                                   " of the cursor
+"   let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+"   if (strlen(substr)==0)                          " nothing to match on empty string
+"     return "\<tab>"
+"   endif
+"   let has_period = match(substr, '\.') != -1      " position of period, if any
+"   let has_slash = match(substr, '\/') != -1       " position of slash, if any
+"   if (!has_period && !has_slash)
+"     return "\<C-X>\<C-P>"                         " existing text matching
+"   elseif ( has_slash )
+"     return "\<C-X>\<C-F>"                         " file matching
+"   else
+"     return "\<C-X>\<C-O>"                         " plugin matching
+"   endif
+" endfunction
+"
+" inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+"
