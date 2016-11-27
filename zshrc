@@ -5,8 +5,8 @@ export ZSH=/home/billy/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+ZSH_THEME="mortalscumbag"
+# ZSH_THEME="random"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -50,11 +50,13 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vim-mode emoji)
+plugins=(git emoji copydir chucknorris common-aliases history )#vi-mode)
+
+
 
 # User configuration
 
-  export PATH="/home/billy/anaconda2/bin:/home/billy/anaconda/bin:/home/billy/anaconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/home/billy/anaconda2/bin:/home/billy/anaconda/bin:/home/billy/anaconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -83,3 +85,20 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
+fi
+
+function snoplus {
+	printf "%-25s" "Loading SNO+ env..."
+	export SNOING=$HOME/snoing
+	export PATH=$SNOING/bin:/usr/bin:$PATH
+	export MAKEFLAGS=-j$(($(nproc)-1))
+	export CXXFLAGS=-D_GLIBCXX_USE_CXX11_ABI=0
+	# source $SNOING/install/env_rat-dev.sh
+	printf "done\n"
+}
+
+
+stty -ixon
