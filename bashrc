@@ -267,6 +267,13 @@ function snoplus {
 	printf "done\n"
 }
 
+function forrat {
+	printf "%-25s" "Loading SNO+ env..."
+	export PATH=/usr/bin:$PATH
+	export MAKEFLAGS=-j$(($(nproc)-1))
+	export CXXFLAGS=-D_GLIBCXX_USE_CXX11_ABI=0
+	printf "done\n"
+}
 
 stty -ixon
 
