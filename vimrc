@@ -43,7 +43,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'myusuf3/numbers.vim'
 "Plugin 'scrooloose/syntastic' 
 " if $(hostname) == "heppc"* 
-" 	Plugin 'Valloric/YouCompleteMe' 
+" Plugin 'Valloric/YouCompleteMe' 
 " endif
 Plugin 'vim-scripts/tComment' "Comment easily with gcc
 Plugin 'lfilho/cosco.vim'
@@ -62,7 +62,7 @@ Plugin 'sjl/gundo.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
+" Bundle "honza/vim-snippets"
 
 " Bundle 'LucHermitte/lh-vim-lib'
 " Bundle 'LucHermitte/VimFold4C'
@@ -74,6 +74,8 @@ filetype plugin indent on    " required
 nnoremap <Leader>l :set hlsearch!<CR>
 set hidden
 set tabstop =2
+set backspace=indent,eol,start
+set diffopt+=vertical
 
 
 map <silent> <C-n> :NERDTreeToggle<cr>

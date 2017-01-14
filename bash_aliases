@@ -3,10 +3,13 @@
 if [[ $(hostname) = "heppc"* ]]; then 
 
 	alias me='liggins@hep.ph.qmul.ac.uk'
+	alias open='gnome-open'
 	alias in='ssh liggins@hep.ph.qmul.ac.uk'
 	alias in400='ssh heppc400 -XY'
+	alias in404='ssh heppc404 -XY'
+	alias in407='ssh heppc407 -XY'
 	alias s1='cd /data/liggins/SummerInternship/BiPo/billSims'
-	alias srat='source /data/snoplus/softwareSL6/env_rat-5.3.1.sh'
+	alias srat='source /data/snoplus/softwareSL6/env_rat-6.1.0.sh'
 	alias cssrat='source /data/snoplus/liggins/year1/CSS/rat/css_rat.sh'
 	alias y1='cd /data/snoplus/liggins/year1'
 	alias css='cd /data/snoplus/liggins/year1/CSS'
@@ -17,6 +20,7 @@ if [[ $(hostname) = "heppc"* ]]; then
 	alias ech='source /data/snoplus/liggins/year1/fitting/virtualenv-14.0.5/echidna/bin/activate'
 	alias ~ech='deactivate'
 	alias mem='cd /data/snoplus/liggins/year1/memoryLeaks/'
+	alias vi='vim'
 	source /opt/sge/default/common/settings.sh
 
 	# Added by Canopy installer on 2016-01-20

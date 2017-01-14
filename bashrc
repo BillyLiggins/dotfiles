@@ -244,6 +244,9 @@ mvg (){
 	fi
 }
 
+# added to provide scons
+export PATH="/data/snoplus/softwareSL6/scons-2.3.4/script:$PATH"
+
 # added by Anaconda2 2.4.0 installer
 export PATH="/home/billy/anaconda2/bin:$PATH"
 
