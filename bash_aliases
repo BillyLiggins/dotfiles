@@ -21,6 +21,7 @@ if [[ $(hostname) = "heppc"* ]]; then
 	alias ~ech='deactivate'
 	alias mem='cd /data/snoplus/liggins/year1/memoryLeaks/'
 	alias vi='vim'
+	alias lt='ls -lrt'
 	source /opt/sge/default/common/settings.sh
 
 	# Added by Canopy installer on 2016-01-20
@@ -43,7 +44,7 @@ if [[ $(hostname) = "heppc"* ]]; then
 fi
 
 #From Laptop
-if [[ $(hostname) = "billy-Inspiron-5423" ]]; then 
+if [[ $(hostname) = "billy-Inspiron-5423" || $(hostname) = "billy-Vostro-430" ]]; then 
 	alias open='xdg-open'
 	alias install='apt-get install'
 	alias inx='ssh liggins@hep.ph.qmul.ac.uk -XY'
@@ -51,14 +52,15 @@ if [[ $(hostname) = "billy-Inspiron-5423" ]]; then
 	alias phd='cd ~/workspace/PhD'
 	alias oxsx='cd ~/workspace/PhD/oxsx'
 	alias report='cd ~/workspace/PhD/Reports/'
-	alias report='cd ~/workspace/PhD/Reports/'
+	alias writeup='cd ~/workspace/PhD/Reports/WriteUps/'
 	alias fit="cd ~/workspace/PhD/fitting"
 	alias srat="source ~/snoing/install/env_rat-dev.sh"
-	alias sroot="source ~/root/bin/thisroot.sh"
-	export PYTHONPATH=/home/billy/echidna:$PYTHONPATH
+	# alias sroot="source ~/root/bin/thisroot.sh"
+	alias sroot="source /home/billy/workspace/PhD/packages/rootBulid/bin/thisroot.sh"
+	alias lt='ls -lrt'
 fi
 
-alias com='sh bin/compile.sh'
+alias com='sh /home/billy/workspace/PhD/oxsx/bin/compile.sh'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."

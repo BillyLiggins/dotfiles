@@ -1,12 +1,3 @@
-" no <down> <Nop>
-" no <left> <Nop>
-" no <right> <Nop>
-" no <up> <Nop>
-"
-" ino <down> <Nop>
-" ino <left> <Nop>
-" ino <right> <Nop>
-" ino <up> <Nop>
 " Get off my lawn
 nnoremap <Left> :echoe "Stop being lazy use h"<CR>
 nnoremap <Right> :echoe "Stop being lazy use l"<CR>
@@ -41,7 +32,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'myusuf3/numbers.vim'
-"Plugin 'scrooloose/syntastic' 
+" Plugin 'scrooloose/syntastic' 
 " if $(hostname) == "heppc"* 
 " Plugin 'Valloric/YouCompleteMe' 
 " endif
@@ -50,25 +41,59 @@ Plugin 'lfilho/cosco.vim'
 Plugin 'tpope/vim-surround' 
 Plugin 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'ervandew/supertab' " this clashes with snipmate
 Plugin 'chriskempson/base16-vim'
 Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-unimpaired'
+" Plugin 'tpope/vim-vinegar.git' 
 Plugin 'godlygeek/tabular.git'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'sjl/gundo.vim'
+Plugin 'flazz/vim-colorschemes'
+
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+" Plugin 'tomtom/tlib_vim'
+" Plugin 'garbas/vim-snipmate'
+"
+" " Optional:
+" Plugin 'honza/vim-snippets'
+
+"Track the engine.
+Plugin 'SirVer/ultisnips'
+
+"Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
 
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 " Bundle "honza/vim-snippets"
+Plugin 'majutsushi/tagbar'
+Plugin 'airblade/vim-gitgutter'
 
-" Bundle 'LucHermitte/lh-vim-lib'
-" Bundle 'LucHermitte/VimFold4C'
 
 call vundle#end()            " required 
 filetype plugin indent on    " required
+
+" file finding
+set path+=**
+set wildmenu
+
+let g:netrw_banner = 0
+let g:netrw_altv = 1
+let g:netrw_liststyle = 3
+let g:netrw_list_hide = netrw_gitignore#Hide()
+
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
 
 "toggle search highlighting.
 nnoremap <Leader>l :set hlsearch!<CR>
@@ -76,7 +101,10 @@ set hidden
 set tabstop =2
 set backspace=indent,eol,start
 set diffopt+=vertical
+" set tabstop =2
+map <Leader>tw :set tw=80<CR>
 
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 map <silent> <C-n> :NERDTreeToggle<cr>
 let g:NERDTreeToggleQuitOnOpen=1
@@ -149,6 +177,7 @@ endif
 "
 " Toggle spell checking on and off with `,s`
 nmap <silent> <leader>s :set spell!<CR>
+nmap <silent> <leader>z [sz=
 
 " Set region to British English
 set spelllang=en_gb
@@ -198,6 +227,7 @@ set pastetoggle=<F2> "F2 before pasting to preserve indentation
 vnoremap <C-c> "*y
 map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
+map <silent><Leader>h :tabe %:r.h<CR>
 
 set background=dark
 set number
@@ -230,14 +260,6 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
-" airline symbols
-"let g:airline_left_sep = '<U+E0B0>'
-" let g:airline_left_alt_sep = '<U+E0B1>'
-" let g:airline_right_sep = '<U+E0B2>'
-" let g:airline_right_alt_sep = '<U+E0B3>'
-" let g:airline_symbols.branch = '<U+E0A0>'
-" let g:airline_symbols.readonly = '<U+E0A2>'
-" let g:airline_symbols.linenr = '<U+E0A1>'
 
 set t_Co=256
 
@@ -247,6 +269,7 @@ let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
 let g:syntastic_cpp_config_file ='.syntastic_cpp_config'
 
@@ -361,7 +384,8 @@ nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
 
 " View PDF macro; '%:r' is current file's root (base) name.
 nnoremap <leader>p :!evince %:r.pdf &<CR><CR>
-" nnoremap <leader>p :!evince %:r.pdf -w &<CR><CR>
+" LaTeX from Matt P's vimrc.
+	autocmd BufNewFile,BufRead *.tex set filetype=tex" nnoremap <leader>p :!evince %:r.pdf -w &<CR><CR>
 " nnoremap <leader>v :!mupdf %:r.pdf &<CR><CR>
 
 " function! Smart_TabComplete()
