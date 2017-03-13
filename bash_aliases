@@ -12,6 +12,7 @@ if [[ $(hostname) = "heppc"* ]]; then
 	alias srat='source /data/snoplus/softwareSL6/env_rat-6.1.0.sh'
 	alias cssrat='source /data/snoplus/liggins/year1/CSS/rat/css_rat.sh'
 	alias y1='cd /data/snoplus/liggins/year1'
+	alias phd='cd /data/snoplus/liggins/year1'
 	alias css='cd /data/snoplus/liggins/year1/CSS'
 	alias report='cd ~/Documents/reports/'
 	alias fit='cd /data/snoplus/liggins/year1/fitting'
@@ -22,6 +23,7 @@ if [[ $(hostname) = "heppc"* ]]; then
 	alias mem='cd /data/snoplus/liggins/year1/memoryLeaks/'
 	alias vi='vim'
 	alias lt='ls -lrt'
+        alias batch='source /opt/sge/default/common/settings.sh'
 	source /opt/sge/default/common/settings.sh
 
 	# Added by Canopy installer on 2016-01-20

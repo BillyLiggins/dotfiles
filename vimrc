@@ -58,7 +58,7 @@ Plugin 'flazz/vim-colorschemes'
 " " Optional:
 " Plugin 'honza/vim-snippets'
 
-"Track the engine.
+" Track the engine.
 Plugin 'SirVer/ultisnips'
 
 "Snippets are separated from the engine. Add this if you want them:
@@ -67,7 +67,7 @@ Plugin 'honza/vim-snippets'
 
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
+" Bundle "garbas/vim-snipmate"
 " Bundle "honza/vim-snippets"
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
@@ -79,6 +79,7 @@ filetype plugin indent on    " required
 " file finding
 set path+=**
 set wildmenu
+set complete-=i
 
 let g:netrw_banner = 0
 let g:netrw_altv = 1
