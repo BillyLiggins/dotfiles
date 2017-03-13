@@ -72,7 +72,7 @@ alias today='grep -h -d skip `date +%m/%d` /usr/share/calendar/*'
 
 alias bbc='lynx http://news.bbc.co.uk/text_only.stm'
 alias nytimes='lynx http://nytimes.com'
-alias whether='curl http://wttr.in/'
+alias weather='curl http://wttr.in/'
 alias starwars='telnet towel.blinkenlights.nl'
 alias m='less'
 alias lg='logout'

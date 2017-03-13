@@ -71,6 +71,9 @@ Bundle "garbas/vim-snipmate"
 " Bundle "honza/vim-snippets"
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'metakirby5/codi.vim'
+Plugin 'skywind3000/asyncrun.vim'
+" Plugin 'w0rp/ale'
 
 
 call vundle#end()            " required 
@@ -79,6 +82,7 @@ filetype plugin indent on    " required
 " file finding
 set path+=**
 set wildmenu
+set complete-=i
 
 let g:netrw_banner = 0
 let g:netrw_altv = 1
@@ -410,4 +414,4 @@ nnoremap <leader>p :!evince %:r.pdf &<CR><CR>
 " endfunction
 "
 " inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-"
+
