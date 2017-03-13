@@ -46,7 +46,7 @@ if [[ $(hostname) = "heppc"* ]]; then
 fi
 
 #From Laptop
-if [[ $(hostname) = "billy-Inspiron-5423" || $(hostname) = "billy-Vostro-430" ]]; then 
+if [[ $(hostname) = "billy-Inspiron-5423" || $(hostname) = "billy-Vostro-430" || $(hostname) = "billy-Lenovo-ideapad-100S-11IBY" ]]; then 
 	alias open='xdg-open'
 	alias install='apt-get install'
 	alias inx='ssh liggins@hep.ph.qmul.ac.uk -XY'
@@ -74,7 +74,7 @@ alias today='grep -h -d skip `date +%m/%d` /usr/share/calendar/*'
 
 alias bbc='lynx http://news.bbc.co.uk/text_only.stm'
 alias nytimes='lynx http://nytimes.com'
-alias whether='curl http://wttr.in/'
+alias weather='curl http://wttr.in/'
 alias starwars='telnet towel.blinkenlights.nl'
 alias m='less'
 alias lg='logout'

@@ -71,6 +71,9 @@ Bundle "tomtom/tlib_vim"
 " Bundle "honza/vim-snippets"
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'metakirby5/codi.vim'
+Plugin 'skywind3000/asyncrun.vim'
+" Plugin 'w0rp/ale'
 
 
 call vundle#end()            " required 
@@ -411,4 +414,4 @@ nnoremap <leader>p :!evince %:r.pdf &<CR><CR>
 " endfunction
 "
 " inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-"
+
