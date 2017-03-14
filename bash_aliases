@@ -37,6 +37,7 @@ if [[ $(hostname) = "heppc"* ]]; then
 	export PATH="/users/liggins/local/bin:$PATH"
 	# This is your own latex TexLive 2016
 	export PATH=/data/snoplus/liggins/packages/install-tl-20160620/bin/x86_64-linux:$PATH
+	export PATH="/users/liggins/usr/bin:$PATH"
 	source ~/.git-completion.bash
 
 
