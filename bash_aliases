@@ -2,6 +2,27 @@
 # if [[ $(hostname) = "heppc400.ph.qmul.ac.uk" ]]; then 
 if [[ $(hostname) = "heppc"* ]]; then 
 
+
+	# Added by Canopy installer on 2016-01-20
+	# VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make the bash prompt show that Canopy is active, otherwise 1
+	alias activate_canopy="source '/users/liggins/Enthought/Canopy_64bit/User/bin/activate'"
+	# VIRTUAL_ENV_DISABLE_PROMPT=1 source '/users/liggins/Enthought/Canopy_64bit/User/bin/activate'
+
+	# added by Anaconda2 4.0.0 installer
+	export PATH="/data/snoplus/liggins/python/anaconda2/bin:$PATH"
+        #Set up varibles to access data on grid.
+        export MYPROXY_SERVER=myproxy.gridpp.rl.ac.uk
+        export LFC_HOST=lfc.gridpp.rl.ac.uk
+        export LCG_GFAL_INFOSYS=lcgbdii.gridpp.rl.ac.uk:2170
+
+	export PATH="/users/liggins/local/bin:$PATH"
+	# This is your own latex TexLive 2016
+	export PATH=/data/snoplus/liggins/packages/install-tl-20160620/bin/x86_64-linux:$PATH
+	export PATH="/users/liggins/usr/bin:$PATH"
+	source ~/.git-completion.bash
+        #This is for vim.
+        export PATH="/user/liggins/usr/bin/:$PATH"
+
 	alias me='liggins@hep.ph.qmul.ac.uk'
 	alias open='gnome-open'
 	alias in='ssh liggins@hep.ph.qmul.ac.uk'
@@ -25,21 +46,6 @@ if [[ $(hostname) = "heppc"* ]]; then
 	alias lt='ls -lrt'
         alias batch='source /opt/sge/default/common/settings.sh'
 	source /opt/sge/default/common/settings.sh
-
-	# Added by Canopy installer on 2016-01-20
-	# VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make the bash prompt show that Canopy is active, otherwise 1
-	alias activate_canopy="source '/users/liggins/Enthought/Canopy_64bit/User/bin/activate'"
-	# VIRTUAL_ENV_DISABLE_PROMPT=1 source '/users/liggins/Enthought/Canopy_64bit/User/bin/activate'
-
-	# added by Anaconda2 4.0.0 installer
-	export PATH="/data/snoplus/liggins/python/anaconda2/bin:$PATH"
-
-	export PATH="/users/liggins/local/bin:$PATH"
-	# This is your own latex TexLive 2016
-	export PATH=/data/snoplus/liggins/packages/install-tl-20160620/bin/x86_64-linux:$PATH
-	export PATH="/users/liggins/usr/bin:$PATH"
-	source ~/.git-completion.bash
-
 
 
 

@@ -1,8 +1,12 @@
 " Get off my lawn
-nnoremap <Left> :echoe "Stop being lazy use h"<CR>
-nnoremap <Right> :echoe "Stop being lazy use l"<CR>
-nnoremap <Up> :echoe "Stop being lazy use k"<CR>
-nnoremap <Down> :echoe "Stop being lazy use j"<CR>
+nnoremap <Left> :bprevious<CR>
+nnoremap <Right> :bnext<CR>
+nnoremap <Up> :ls<CR>
+nnoremap <Down> :ls<CR>
+" nnoremap <Left> :echoe "Stop being lazy use h"<CR>
+" nnoremap <Right> :echoe "Stop being lazy use l"<CR>
+" nnoremap <Up> :echoe "Stop being lazy use k"<CR>
+" nnoremap <Down> :echoe "Stop being lazy use j"<CR>
 vmap <expr> <LEFT> DVB_Drag('left')
 vmap <expr> <RIGHT> DVB_Drag('right')
 vmap <expr> <DOWN> DVB_Drag('down')
@@ -71,9 +75,10 @@ Bundle "tomtom/tlib_vim"
 " Bundle "honza/vim-snippets"
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'metakirby5/codi.vim'
-Plugin 'skywind3000/asyncrun.vim'
+" Plugin 'metakirby5/codi.vim'
+" Plugin 'skywind3000/asyncrun.vim'
 " Plugin 'w0rp/ale'
+" Plugin 'Yggdroot/indentLine'
 
 
 call vundle#end()            " required 
@@ -102,7 +107,7 @@ let g:UltiSnipsEditSplit="vertical"
 "toggle search highlighting.
 nnoremap <Leader>l :set hlsearch!<CR>
 set hidden
-set tabstop =2
+"set tabstop =2
 set backspace=indent,eol,start
 set diffopt+=vertical
 " set tabstop =2
@@ -389,7 +394,7 @@ nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
 " View PDF macro; '%:r' is current file's root (base) name.
 nnoremap <leader>p :!evince %:r.pdf &<CR><CR>
 " LaTeX from Matt P's vimrc.
-	autocmd BufNewFile,BufRead *.tex set filetype=tex" nnoremap <leader>p :!evince %:r.pdf -w &<CR><CR>
+	" autocmd BufNewFile,BufRead *.tex set filetype=tex" nnoremap <leader>p :!evince %:r.pdf -w &<CR><CR>
 " nnoremap <leader>v :!mupdf %:r.pdf &<CR><CR>
 
 " function! Smart_TabComplete()

@@ -115,19 +115,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# alias mm='more'
-# alias m='less'
-# alias open='xdg-open'
-# alias install='apt-get install'
-# alias inx='ssh liggins@hep.ph.qmul.ac.uk -XY'
-# alias in='ssh liggins@hep.ph.qmul.ac.uk'
-# alias inDesktop='ssh billy@billy-Vostro-430'
-# alias inDesktopx='ssh -XY billy@billy-Vostro-430'
-# alias m='less'
-# alias phd='cd ~/workspace/PhD'
-# alias oxsx='cd ~/workspace/PhD/oxsx'
-# alias com='sh bin/compile.sh'
-
 # added by Anaconda 2.3.0 installer
 
 # Define a few Colours
@@ -182,25 +169,6 @@ extract () {
    fi
  }
 
-# alias fit="cd ~/workspace/PhD/fitting"
-# alias srat="source ~/snoing/install/env_rat-dev.sh"
-# alias ..="cd .."
-# alias ...="cd ../.."
-# alias ....="cd ../../.."
-# alias .....="cd ../../../.."
-
-# alias rc="vim ~/.bashrc"
-# alias vrc="vim ~/.vimrc"
-# alias today='grep -h -d skip `date +%m/%d` /usr/share/calendar/*'
-#
-#source ~/root/bin/thisroot.sh
-# alias sroot="source ~/root/bin/thisroot.sh"
-# export PYTHONPATH="/home/billy/echidna:$PYTHONPATH"
-#source ~/snoing/install/env_rat-dev.sh
-# alias bbc='lynx http://news.bbc.co.uk/text_only.stm'
-# alias nytimes='lynx http://nytimes.com'
-# alias weather='curl http://wttr.in/'
-# alias starwars='telnet towel.blinkenlights.nl'
 
 define () { curl dict://dict.org/d:${1}:wn; }
 set paste
