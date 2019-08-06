@@ -53,7 +53,6 @@ Plugin 'vim-scripts/tComment' "Comment easily with gcc
 Plugin 'lfilho/cosco.vim'
 Plugin 'tpope/vim-surround' 
 Plugin 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plugin 'easymotion/vim-easymotion'
@@ -63,6 +62,8 @@ Plugin 'godlygeek/tabular.git'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'sjl/gundo.vim'
 Plugin 'flazz/vim-colorschemes'
+
+
 
 
 " Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -77,7 +78,6 @@ Plugin 'SirVer/ultisnips'
 
 "Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
-
 
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -143,7 +143,7 @@ let NERDTreeShowHidden=1
 nmap <silent> <leader>y :NERDTreeFind<cr>
 
 " map <CR> o " This mapping is bad for command line window.
-nnoremap <Space> za
+nnoremap <Space> zizz
 map <Leader>= mmggVG9<ggVG=`m
 map <Leader>gq mmggVGgq`m
 map <Leader>gq gqip
