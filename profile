@@ -28,3 +28,7 @@ if [ -e /usr/share/terminfo/x/xterm-256color ]; then
 else
         export TERM='xterm-color'
 fi
+
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3.6"
+export WORKON_HOME="${HOME}/.virtualenvs"
+export PROJECT_HOME="${HOME}/workspace"

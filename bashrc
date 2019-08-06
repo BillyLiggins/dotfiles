@@ -248,3 +248,16 @@ function forrat {
 
 stty -ixon
 
+
+. /usr/local/bin/virtualenvwrapper.sh
+
+function mkvenv(){
+    mkvirtualenv $*
+    setvirtualenvproject
+    pip install -r requirements.txt
+}
+
+function hlr(){
+    heroku local:run $*
+}
+
