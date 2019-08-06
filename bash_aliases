@@ -27,7 +27,12 @@ if [[ $(hostname) = "heppc"* ]]; then
 	alias open='gnome-open'
 	alias in='ssh liggins@hep.ph.qmul.ac.uk'
 	alias in400='ssh heppc400 -XY'
+	alias in401='ssh heppc401 -XY'
+	alias in402='ssh heppc402 -XY'
+	alias in403='ssh heppc403 -XY'
 	alias in404='ssh heppc404 -XY'
+	alias in405='ssh heppc405 -XY'
+	alias in406='ssh heppc406 -XY'
 	alias in407='ssh heppc407 -XY'
 	alias s1='cd /data/liggins/SummerInternship/BiPo/billSims'
 	alias srat='source /data/snoplus/softwareSL6/env_rat-6.1.0.sh'
@@ -45,6 +50,7 @@ if [[ $(hostname) = "heppc"* ]]; then
 	alias vi='vim'
 	alias lt='ls -lrt'
         alias batch='source /opt/sge/default/common/settings.sh'
+        alias scons='echo scons -j44 && scons -j44'
 	source /opt/sge/default/common/settings.sh
 
 
@@ -56,7 +62,7 @@ fi
 if [[ $(hostname) = "billy-Inspiron-5423" || $(hostname) = "billy-Vostro-430" || $(hostname) = "billy-Lenovo-ideapad-100S-11IBY" ]]; then 
 	alias open='xdg-open'
 	alias install='apt-get install'
-	alias inx='ssh liggins@hep.ph.qmul.ac.uk -XY'
+	alias inx='ssh -XY liggins@hep.ph.qmul.ac.uk '
 	alias in='ssh liggins@hep.ph.qmul.ac.uk'
 	alias phd='cd ~/workspace/PhD'
 	alias oxsx='cd ~/workspace/PhD/oxsx'

@@ -1,3 +1,11 @@
+" Move in wrapped line as default.
+noremap  <buffer> <silent> k gk
+noremap  <buffer> <silent> j gj
+noremap  <buffer> <silent> 0 g0
+noremap  <buffer> <silent> $ g$
+noremap  <buffer> <silent> gk k
+noremap  <buffer> <silent> gj j
+noremap  <buffer> <silent> g0 0
 " Get off my lawn
 nnoremap <Left> :bprevious<CR>
 nnoremap <Right> :bnext<CR>
@@ -20,6 +28,7 @@ let mapleader=","
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
+filetype plugin on
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -44,7 +53,6 @@ Plugin 'vim-scripts/tComment' "Comment easily with gcc
 Plugin 'lfilho/cosco.vim'
 Plugin 'tpope/vim-surround' 
 Plugin 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plugin 'easymotion/vim-easymotion'
@@ -54,6 +62,9 @@ Plugin 'godlygeek/tabular.git'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'sjl/gundo.vim'
 Plugin 'flazz/vim-colorschemes'
+
+
+
 
 " Plugin 'MarcWeber/vim-addon-mw-utils'
 " Plugin 'tomtom/tlib_vim'
@@ -68,7 +79,6 @@ Plugin 'SirVer/ultisnips'
 "Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
-
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 " Bundle "garbas/vim-snipmate"
@@ -79,6 +89,11 @@ Plugin 'airblade/vim-gitgutter'
 " Plugin 'skywind3000/asyncrun.vim'
 " Plugin 'w0rp/ale'
 " Plugin 'Yggdroot/indentLine'
+" Plugin 'mtth/cursorcross.vim'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+
+Plugin 'lervag/vimtex'
+
 
 
 call vundle#end()            " required 
@@ -105,15 +120,22 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 "toggle search highlighting.
-nnoremap <Leader>l :set hlsearch!<CR>
+" nnoremap <Leader>l :set hlsearch!<CR>
 set hidden
 "set tabstop =2
 set backspace=indent,eol,start
 set diffopt+=vertical
 " set tabstop =2
-map <Leader>tw :set tw=80<CR>
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+map <Leader>tw :set tw=80<CR> 
+" map <Leader>CC colorcolumn="80,".join(range(120,999),",")
 
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set smarttab
 
 map <silent> <C-n> :NERDTreeToggle<cr>
 let g:NERDTreeToggleQuitOnOpen=1
@@ -121,7 +143,7 @@ let NERDTreeShowHidden=1
 nmap <silent> <leader>y :NERDTreeFind<cr>
 
 " map <CR> o " This mapping is bad for command line window.
-nnoremap <Space> za
+nnoremap <Space> zizz
 map <Leader>= mmggVG9<ggVG=`m
 map <Leader>gq mmggVGgq`m
 map <Leader>gq gqip
@@ -389,7 +411,7 @@ nmap 				 ++ vip++
 
 
 " LaTeX (rubber) macro for compiling
-nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
+nnoremap <leader>c :!clear<CR> :w<CR>:!rubber --pdf --warn all %<CR>
 
 " View PDF macro; '%:r' is current file's root (base) name.
 nnoremap <leader>p :!evince %:r.pdf &<CR><CR>
@@ -419,4 +441,3 @@ nnoremap <leader>p :!evince %:r.pdf &<CR><CR>
 " endfunction
 "
 " inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-
