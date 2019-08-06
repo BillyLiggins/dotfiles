@@ -1,12 +1,12 @@
 [user]
-	name = Billy Liggins
-	email = Billyliggins@gmail.com
+	name = billyliggins-yobota
+	email = billy@yobota.xyz
 [color]
 	ui = auto
 [core]
 	editor = vim
 [push]
-	default = matching
+	default = simple
 [alias]
   co = checkout
   ci = commit
