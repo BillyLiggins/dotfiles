@@ -93,3 +93,4 @@ alias m='less'
 alias lg='logout'
 alias mm='more'
 alias m='less'
+alias o="xdg-open"

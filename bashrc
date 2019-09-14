@@ -270,7 +270,6 @@ function ghf {
 
 stty -ixon
 
-
 . /usr/local/bin/virtualenvwrapper.sh
 
 function mkvenv(){
@@ -283,3 +282,13 @@ function hlr(){
     heroku local:run $*
 }
 
+alias vimm='/usr/bin/vim'
+alias vii='/usr/bin/vim'
+alias vim='nvim'
+alias vi='nvim'
+
+# Map caps lock to escape
+setxkbmap -option caps:escape
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH="$PATH:/home/billy/development/flutter/bin"
