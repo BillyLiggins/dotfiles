@@ -84,6 +84,7 @@ alias .....="cd ../../../.."
 alias rc="vim ~/.bashrc"
 alias rca="vim ~/.bash_aliases"
 alias vrc="vim ~/.vimrc"
+alias vrc="vim ~/.config/nvim/init.vim"
 alias today='grep -h -d skip `date +%m/%d` /usr/share/calendar/*'
 
 alias bbc='lynx http://news.bbc.co.uk/text_only.stm'
@@ -96,6 +97,11 @@ alias mm='more'
 alias m='less'
 alias o="xdg-open"
 
+alias vi="nvim"
+alias vim="nvim"
+alias vii="/usr/bin/vim"
+alias vimm="/usr/bin/vim"
+
 # toggle caps lock
 alias capslock="xdotool key Caps_Lock"
 
@@ -106,7 +112,7 @@ alias gh="git hist"
 alias gs="git st"
 alias gc="git co"
 alias gb="hub browse"
-alias lastcommit = "git commit --amend"
+alias lastcommit="git commit --amend"
 alias wo="workon"
 # alias woh="workon"
 function woh(){

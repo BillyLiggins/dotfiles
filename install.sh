@@ -10,7 +10,7 @@ for file in $DIR/*; do
     ln -sfn $file ~/.$filename
 done
 
-mkdir -p ~/.config/nvim/init.vim
+mkdir -p ~/.config/nvim/
 ln -sfn init.vim ~/.config/nvim/init.vim
 
 source ~/.bashrc
