@@ -1,6 +1,6 @@
 My dotfiles
 ---
+You can use the old shell script you nicked but use install.py because.
 ## Install
 ```
-chmod +x install.sh && ./install.sh
-```
+python3 install.py
