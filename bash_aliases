@@ -82,6 +82,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 alias rc="vim ~/.bashrc"
+alias rca="vim ~/.bash_aliases"
 alias vrc="vim ~/.vimrc"
 alias today='grep -h -d skip `date +%m/%d` /usr/share/calendar/*'
 
@@ -94,3 +95,39 @@ alias lg='logout'
 alias mm='more'
 alias m='less'
 alias o="xdg-open"
+
+# toggle caps lock
+alias capslock="xdotool key Caps_Lock"
+
+# Git shortcuts
+alias ga="git add"
+alias gd="git diff"
+alias gh="git hist"
+alias gs="git st"
+alias gc="git co"
+alias gb="hub browse"
+alias lastcommit = "git commit --amend"
+alias wo="workon"
+# alias woh="workon"
+function woh(){
+    workon `basename $PWD`
+}
+
+# python
+alias p="pyhton"
+alias p2="pyhton2"
+alias p3="pyhton3"
+
+# Vagrant
+
+alias vp="vagrant provision"
+alias vu="vagrant up"
+alias vs="vagrant ssh"
+alias vd="vagrant destroy"
+
+# Vagrant
+alias hl="heroku local"
+
+# rgrep
+alias rgrep="rgrep -n --color"
+

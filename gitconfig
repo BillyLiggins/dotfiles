@@ -6,7 +6,7 @@
 [core]
 	editor = vim
 [push]
-	default = simple
+	default = current
 [alias]
     ## Spellings
         ad = add
@@ -68,3 +68,5 @@
 	sui = submodule update --init
 	cot = checkout -t
 	dc = diff --cached
+[init]
+	templatedir = ~/.git-templates

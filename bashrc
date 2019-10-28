@@ -292,3 +292,4 @@ setxkbmap -option caps:escape
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH="$PATH:/home/billy/development/flutter/bin"
+export PATH="$PATH:/home/billy/packages/node-v10.16.3-linux-x64/bin/"
