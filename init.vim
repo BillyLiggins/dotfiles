@@ -3,6 +3,8 @@
 """ Vim-Plug
 call plug#begin()
 
+Plug 'psf/black'
+Plug 'SkyLeach/pudb.vim'
 Plug 'tpope/vim-rhubarb'
 Plug 'itchyny/vim-gitbranch'
 Plug 'myusuf3/numbers.vim'
@@ -14,6 +16,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'hhatto/autopep8'
 Plug 'w0rp/ale'
 Plug 'Chiel92/vim-autoformat'
+Plug 'JamshedVesuna/vim-markdown-preview'
 
 " Aesthetics - Main
 Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
@@ -62,7 +65,7 @@ Plug 'dkarter/bullets.vim'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " Entertainment
-" Plug 'ryanss/vim-hackernews'
+Plug 'dansomething/vim-hackernews'
 "
 
 "  from fred's init
@@ -99,7 +102,7 @@ let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
 syntax on
 color dracula
 highlight Pmenu guibg=white guifg=black gui=bold
-highlight Comment gui=bold
+highlight Comment gui=bold guifg=#a4d692
 highlight Normal gui=none
 highlight NonText guibg=none
 highlight SpellBad gui=italic guifg=Yellow guibg=black
@@ -136,6 +139,7 @@ set hlsearch
 " Show matching brackets
 set showmatch
 set cursorline
+set cursorcolumn
 let g:markdown_fenced_languages = ['html', 'js=javascript', 'json=javascript', 'python', 'sql', 'bash=sh', 'sh']
 " Don't mess up latex.
 let g:tex_conceal = ""
@@ -146,7 +150,7 @@ let g:tex_conceal = ""
 let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable = '↠'
 let g:NERDTreeDirArrowCollapsible = '↡'
-let g:NERDTreeWinSize=40
+let g:NERDTreeWinSize=80
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -354,7 +358,6 @@ nmap <leader>f :Files<CR>
 nmap <leader>t :Tags<CR>
 nmap <leader>g :Goyo<CR>
 nmap <leader>h :RainbowParentheses!!<CR>
-nmap <leader>j :set filetype=journal<CR>
 nmap <leader>k :ColorToggle<CR>
 nmap <leader>l :Limelight!!<CR>
 xmap <leader>l :Limelight!!<CR>
@@ -425,7 +428,8 @@ map <leader>et :tabe %%
 " Toggle spell checking on and off with `,s`
 " autocmd FileType * setlocal spell
 nmap <silent> <leader>s :set spell!<CR>
-nmap <silent> <leader>z [sz=
+nmap <silent> <leader>z [sz=1<CR>
+nmap <silent> <leader>Z [sz=
 
 " Set region to British English
 set spelllang=en_gb
@@ -441,8 +445,10 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 
+" Json formatting
 com! FormatJSON %!python -m json.tool
 nnoremap =j :FormatJSON<CR>
+
 " Find usages of word under cursor
 nnoremap <leader>u :Ag <C-R><C-W><CR>
 nnoremap <leader>/ :Tag <CR>
@@ -456,6 +462,7 @@ nnoremap <leader>gm :Gmove
 nnoremap <leader>gd :Gvdiff<CR>
 
 " Scrolloff
+set so=999
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 " Autoformat
@@ -466,7 +473,22 @@ inoremap <C-A-l> :Autoformat<CR>
 nmap <silent> <leader>rr :Semshi rename<CR>
 
 " resize
-nmap <silent> <C-Right> <C-w>><CR>
-nmap <silent> <C-Left> <C-w><<CR>
-nmap <silent> <C-Up> <C-w>+<CR>
-nmap <silent> <C-Down> <C-w>-<CR>
+nmap <silent> <C-Right> <C-w>>
+nmap <silent> <C-Left> <C-w><
+nmap <silent> <C-Up> <C-w>-
+nmap <silent> <C-Down> <C-w>+
+
+" ctags
+set tags+=$VIRTUAL_ENV/tags
+
+" " Nvim python environment settings
+" if has('nvim')
+"   let g:python_host_prog='~/.virtualenvs/neovim2/bin/python'
+"   let g:python3_host_prog='~/.virtualenvs/neovim3/bin/python'
+"   " set the virtual env python used to launch the debugger
+"   let g:pudb_python=$VIRTUAL_ENV.'/bin/python3'
+"   " set the entry point (script) to use for pudb
+"   " let g:pudb_entry_point='~/src/poweruser_tools/test/test_templates.py'
+"   " Unicode symbols work fine (nvim, iterm, tmux, nyovim tested)
+"   let g:pudb_breakpoint_symbol='☠'
+" endif

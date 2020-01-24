@@ -52,10 +52,6 @@ if [[ $(hostname) = "heppc"* ]]; then
         alias batch='source /opt/sge/default/common/settings.sh'
         alias scons='echo scons -j44 && scons -j44'
 	source /opt/sge/default/common/settings.sh
-
-
-
-
 fi
 
 #From Laptop
@@ -96,6 +92,7 @@ alias lg='logout'
 alias mm='more'
 alias m='less'
 alias o="xdg-open"
+alias open="xdg-open"
 
 alias vi="nvim"
 alias vim="nvim"
@@ -105,10 +102,14 @@ alias vimm="/usr/bin/vim"
 # toggle caps lock
 alias capslock="xdotool key Caps_Lock"
 
+alias x=exit
+alias clip="xclip -selection c"
+
 # Git shortcuts
 alias ga="git add"
 alias gd="git diff"
 alias gh="git hist"
+alias gp="git push"
 alias gs="git st"
 alias gc="git co"
 alias gb="hub browse"
@@ -118,11 +119,23 @@ alias wo="workon"
 function woh(){
     workon `basename $PWD`
 }
-
+function mkvenvh(){
+    mkvenv `basename $PWD`
+}
+function mkcd {
+  if [ ! -n "$1" ]; then
+    echo "Enter a directory name"
+  elif [ -d $1 ]; then
+    echo "\`$1' already exists"
+  else
+    mkdir -p $1 && cd $1
+  fi
+}
 # python
-alias p="pyhton"
-alias p2="pyhton2"
-alias p3="pyhton3"
+alias python="python3"
+alias p="python"
+alias p2="python2"
+alias p3="python3"
 
 # Vagrant
 
@@ -131,9 +144,26 @@ alias vu="vagrant up"
 alias vs="vagrant ssh"
 alias vd="vagrant destroy"
 
-# Vagrant
+# heroku
 alias hl="heroku local"
+alias refreshrds="heroku run refresh -a yo-rds-billy"
+alias simlog='heroku logs -t -a yobota-simulation-integrations'
 
 # rgrep
-alias rgrep="rgrep -n --color"
+alias rgrep="rgrep -nI --color --exclude=tags"
+alias rgerp="rgrep"
+alias rgrrp="rgrep"
+alias rgeep="rgrep"
+alias gerp="grep"
+alias grrp="grep"
+alias geep="grep"
 
+# Quick find
+function f() {
+    echo "find . -iname \"*$1*\""
+    find . -iname "*$1*"
+}
+alias tree="tree -I 'CVS|.git|*~'"
+
+# bookmarks
+alias jira="bm jira"

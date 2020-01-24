@@ -293,3 +293,27 @@ setxkbmap -option caps:escape
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH="$PATH:/home/billy/development/flutter/bin"
 export PATH="$PATH:/home/billy/packages/node-v10.16.3-linux-x64/bin/"
+
+
+function release-lib() {
+    if [ -z "$1" ]
+      then
+        echo "No release version supplied. Use 'release-lib major.minor.patch'"
+        return 1
+    fi
+    git fetch
+    git checkout ci
+    git pull
+    git reset --hard origin/ci
+    git checkout -b "release-$1"
+    scripts/set_version.sh $1
+    git commit -a -m "Increment version to $1"
+    git checkout master
+    git reset --hard origin/master
+    git merge "release-$1" --no-ff
+    git tag $1 -a
+    scripts/distribute.sh
+    git push origin master $1
+    echo "Released $1 - Now pull request from master into ci"
+}
+export TWINE_REPOSITORY=yopy

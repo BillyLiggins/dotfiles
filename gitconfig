@@ -1,5 +1,5 @@
 [user]
-	name = billyliggins-yobota
+	name = Billy Liggins
 	email = billy@yobota.xyz
 [color]
 	ui = auto
@@ -68,5 +68,11 @@
 	sui = submodule update --init
 	cot = checkout -t
 	dc = diff --cached
+	switch = !/usr/local/bin/legit switch
+	sync = !/usr/local/bin/legit sync
+	publish = !/usr/local/bin/legit publish
+	unpublish = !/usr/local/bin/legit unpublish
+	undo = !/usr/local/bin/legit undo
+	branches = !/usr/local/bin/legit branches
 [init]
 	templatedir = ~/.git-templates

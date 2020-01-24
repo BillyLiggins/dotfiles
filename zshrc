@@ -124,3 +124,5 @@ codi() {
     hi NonText ctermfg=0 |\
     Codi $syntax" "$@"
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
