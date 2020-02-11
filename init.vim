@@ -8,7 +8,7 @@ Plug 'SkyLeach/pudb.vim'
 Plug 'tpope/vim-rhubarb'
 Plug 'itchyny/vim-gitbranch'
 Plug 'myusuf3/numbers.vim'
-Plug 'vim-scripts/tComment' "Comment easily with gcc
+" Plug 'vim-scripts/tComment' "Comment easily with gcc
 Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
@@ -46,6 +46,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
@@ -72,7 +73,7 @@ Plug 'dansomething/vim-hackernews'
 " Plug 'junegunn/vim-github-dashboard'
 " Plug 'tpope/vim-rhubarb'
 " Plug 'tpope/vim-unimpaired'
-" Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 " Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-markdown'
 " Plug 'airblade/vim-gitgutter'
@@ -174,7 +175,7 @@ set completeopt-=preview
 let g:SuperTabDefaultCompletionType = "<C-n>"
 
 " Ultisnips
-let g:UltiSnipsExpandTrigger="<C-Space>"
+let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<C-x>"
 
@@ -381,7 +382,7 @@ nnoremap <Down> :ls<CR>
 """ Move buffer without saving.
 set hidden
 
-nnoremap <Space> zizz
+" nnoremap <Space> zizz
 map <Leader>= mmggVG9<ggVG=`m
 map <Leader>gq mmggVGgq`m
 map <Leader>gq gqip

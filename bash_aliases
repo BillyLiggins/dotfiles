@@ -71,7 +71,6 @@ if [[ $(hostname) = "billy-Inspiron-5423" || $(hostname) = "billy-Vostro-430" ||
 	alias lt='ls -lrt'
 fi
 
-alias com='sh /home/billy/workspace/PhD/oxsx/bin/compile.sh'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -108,7 +107,7 @@ alias clip="xclip -selection c"
 # Git shortcuts
 alias ga="git add"
 alias gd="git diff"
-alias gh="git hist"
+# alias gh="git hist"
 alias gp="git push"
 alias gs="git st"
 alias gc="git co"
