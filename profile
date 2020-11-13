@@ -32,3 +32,5 @@ fi
 export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3.6"
 export WORKON_HOME="${HOME}/.virtualenvs"
 export PROJECT_HOME="${HOME}/workspace"
+
+export PATH="$HOME/.poetry/bin:$PATH"

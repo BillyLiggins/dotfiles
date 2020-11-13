@@ -50,7 +50,7 @@ ZSH_THEME="mortalscumbag"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git emoji copydir chucknorris common-aliases history )#vi-mode)
+plugins=(git git-extras z zsh-autosuggestions docker vagrant )#vi-mode)
 
 
 
@@ -83,12 +83,16 @@ export LANG=en_US.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
+
+function hlr(){
+    heroku local:run $*
+}
 
 function snoplus {
 	printf "%-25s" "Loading SNO+ env..."
@@ -126,3 +130,4 @@ codi() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/home/billy/packages/git-fuzzy/bin:$PATH"

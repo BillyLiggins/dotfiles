@@ -1,3 +1,6 @@
+export GITAWAREPROMPT=~/.bash/git-aware-prompt
+source "${GITAWAREPROMPT}/main.sh"
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # If not running interactively, don't do anything
 case $- in
@@ -53,13 +56,22 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# # Regular
+# txtblk="$(tput setaf 0 2>/dev/null || echo '\e[0;30m')"  # Black
+# txtred="$(tput setaf 1 2>/dev/null || echo '\e[0;31m')"  # Red
+# txtgrn="$(tput setaf 2 2>/dev/null || echo '\e[0;32m')"  # Green
+# txtylw="$(tput setaf 3 2>/dev/null || echo '\e[0;33m')"  # Yellow
+# txtblu="$(tput setaf 4 2>/dev/null || echo '\e[0;34m')"  # Blue
+# txtpur="$(tput setaf 5 2>/dev/null || echo '\e[0;35m')"  # Purple
+# txtcyn="$(tput setaf 6 2>/dev/null || echo '\e[0;36m')"  # Cyan
+# txtwht="$(tput setaf 7 2>/dev/null || echo '\e[0;37m')"  # White
+
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\n\$ "
-    
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[$txtylw\]\$git_branch\[$txtwht\]\$git_dirty\[$txtrst\]\$\n"
 else
-    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    PS1="\${debian_chroot:+(\$debian_chroot)}\u@\h:\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\n\$ "
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    # PS1="\${debian_chroot:+(\$debian_chroot)}\u@\h:\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\n\$ "
     
 fi
 unset color_prompt force_color_prompt
@@ -221,12 +233,8 @@ export PATH="/home/billy/anaconda2/bin:$PATH"
 
 # Added by Canopy installer on 2016-01-20
 # VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make the bash prompt show that Canopy is active, otherwise 1
-alias activate_canopy="source '/home/billy/Enthought/Canopy_64bit/User/bin/activate'"
 # VIRTUAL_ENV_DISABLE_PROMPT=1 source '/home/billy/Enthought/Canopy_64bit/User/bin/activate'
 
-
-export GITAWAREPROMPT=~/.bash/git-aware-prompt
-source "${GITAWAREPROMPT}/main.sh"
 
 function snoplus {
 	printf "%-25s" "Loading SNO+ env..."
@@ -294,6 +302,27 @@ setxkbmap -option caps:escape
 export PATH="$PATH:/home/billy/development/flutter/bin"
 export PATH="$PATH:/home/billy/packages/node-v10.16.3-linux-x64/bin/"
 
+# function tag-lib() {
+#     if [ -z "$1" ]
+#       then
+#         echo "No release version supplied. Use 'release-lib major.minor.patch'"
+#         return 1
+#     fi
+#     git fetch
+#     git checkout ci
+#     git pull
+#     git reset --hard origin/ci
+#     git checkout -b "release-$1"
+#     scripts/set_version.sh $1
+#     git commit -a -m "Increment version to $1"
+#     git checkout master
+#     git reset --hard origin/master
+#     git merge "release-$1" --no-ff
+#     git tag $1 -a
+#     scripts/distribute.sh
+#     git push origin master $1
+#     echo "Released $1 - Now pull request from master into ci"
+# }
 
 function release-lib() {
     if [ -z "$1" ]
@@ -317,3 +346,29 @@ function release-lib() {
     echo "Released $1 - Now pull request from master into ci"
 }
 export TWINE_REPOSITORY=yopy
+source ~/.bashrc.local
+# source /etc/profile.d/undistract-me.sh
+
+function git-work() {
+    ssh-add -D
+    ssh-add ~/.ssh/id_rsa_work_user1
+}
+
+function git-personal() {
+    ssh-add -D
+    ssh-add ~/.ssh/id_rsa
+}
+git-up () {
+
+  TEMP_PWD=`pwd`
+  while ! [ -d .git ]; do
+  cd ..
+  done
+  OLDPWD=$TEMP_PWD
+
+}
+export PATH="/home/billy/packages/git-fuzzy/bin:$PATH"
+. /home/billy/packages/z/z.sh
+
+export PATH="/home/billy/packages/diff-so-fancy/:$PATH"
+export PATH="$HOME/.poetry/bin/:$PATH"

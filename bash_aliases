@@ -105,21 +105,29 @@ alias x=exit
 alias clip="xclip -selection c"
 
 # Git shortcuts
+## spelling
+alias gti="git"
+
 alias ga="git add"
 alias gd="git diff"
 # alias gh="git hist"
 alias gp="git push"
 alias gs="git st"
+alias gsf="git st | fpp"
 alias gc="git co"
 alias gb="hub browse"
+alias gr="git reset --hard"
 alias lastcommit="git commit --amend"
+alias br_ls="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias wo="workon"
-# alias woh="workon"
 function woh(){
     workon `basename $PWD`
 }
 function mkvenvh(){
     mkvenv `basename $PWD`
+}
+function rmvirtualenvh(){
+    rmvirtualenv `basename $PWD`
 }
 function mkcd {
   if [ ! -n "$1" ]; then
@@ -138,15 +146,23 @@ alias p3="python3"
 
 # Vagrant
 
-alias vp="vagrant provision"
-alias vu="vagrant up"
+alias vp="time vagrant provision; aplay /usr/share/sounds/sound-icons/hash; notify-send 'VM provisioned !!'"
+alias vu="time vagrant up; aplay /usr/share/sounds/sound-icons/hash; notify-send 'VM up and maybe provisioned !!'"
 alias vs="vagrant ssh"
+alias vgs="vagrant global-status"
 alias vd="vagrant destroy"
+alias vdf="vagrant destroy -f"
+alias vh="vagrant halt"
 
 # heroku
 alias hl="heroku local"
-alias refreshrds="heroku run refresh -a yo-rds-billy"
+alias refreshrds="time heroku run refresh -a yo-rds-billy"
 alias simlog='heroku logs -t -a yobota-simulation-integrations'
+# tmux
+alias ta="tmux a"
+alias tl='tmux list-sessions'
+alias t='tmux attach || tmux new-session'
+
 
 # rgrep
 alias rgrep="rgrep -nI --color --exclude=tags"
@@ -162,7 +178,29 @@ function f() {
     echo "find . -iname \"*$1*\""
     find . -iname "*$1*"
 }
+
+
+# Quick find
+function tag() {
+    echo "# release integrations"
+    echo "* pip install twine==1.11.0"
+    echo "* on master"
+    echo "* git tag x.y.z -a (Version x.y.z message)"
+    echo "* git push --tags"
+    echo "* python setup.py build bdist_wheel"
+    echo "* twine upload dist/x.y.z -r yopy"
+    echo ""
+}
 alias tree="tree -I 'CVS|.git|*~'"
 
 # bookmarks
 alias jira="bm jira"
+
+# ls
+alias ls="ls -h --color "
+
+alias aws_ls_stubs="aws s3 ls --human-readable s3://yobota-simulation-stubs/ --profile simulation-stubs | sort"
+alias aws_ls_ipython="aws s3 ls --human-readable s3://yobota-ipython-simulation/output/ --profile ipython | sort"
+alias req="vi requirements.txt"
+
+source ~/.docker_alias_rc

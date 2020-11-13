@@ -2,9 +2,21 @@
 	name = Billy Liggins
 	email = billy@yobota.xyz
 [color]
-	ui = auto
+	ui = true
+[color "diff"]
+	new = green bold
+	old = red bold
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	whitespace = red reverse
+[color "status"]
+  added = green
+  changed = cyan bold
+  untracked = magenta bold
 [core]
 	editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [push]
 	default = current
 [alias]
@@ -46,6 +58,7 @@
         hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
         type = cat-file -t
         dump = cat-file -p
+        fixup = "!sh -c '(git diff-files --quiet || (echo Unstaged changes, please commit or stash with --keep-index; exit 1)) && COMMIT=$(git rev-parse $1) && git commit --fixup=$COMMIT && git rebase --autosquash $COMMIT~1' -"
 	b = branch -v
 	ci = commit
 	cob = checkout -b
@@ -76,3 +89,10 @@
 	branches = !/usr/local/bin/legit branches
 [init]
 	templatedir = ~/.git-templates
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[diff-so-fancy]
+	first-run = false

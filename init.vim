@@ -1,22 +1,26 @@
-""" Optixal's Neovim Init.vim
-"
 """ Vim-Plug
 call plug#begin()
 
+Plug 'mhinz/vim-startify'
 Plug 'psf/black'
+Plug 'alfredodeza/pytest.vim'
 Plug 'SkyLeach/pudb.vim'
 Plug 'tpope/vim-rhubarb'
-Plug 'itchyny/vim-gitbranch'
 Plug 'myusuf3/numbers.vim'
-" Plug 'vim-scripts/tComment' "Comment easily with gcc
+Plug 'vim-scripts/tComment' "Comment easily with gcc
 Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
-" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'hhatto/autopep8'
 Plug 'w0rp/ale'
 Plug 'Chiel92/vim-autoformat'
-Plug 'JamshedVesuna/vim-markdown-preview'
+" Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'vimwiki/vimwiki'
+Plug 'justinmk/vim-sneak'
+Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'jceb/vim-orgmode'
 
 " Aesthetics - Main
 Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
@@ -24,11 +28,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-journal'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'nightsense/forgotten'
 Plug 'zaki/zazen'
 
 " Aethetics - Additional
@@ -36,72 +38,52 @@ Plug 'nightsense/nemo'
 Plug 'yuttie/hydrangea-vim'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 Plug 'rhysd/vim-color-spring-night'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'nanotech/jellybeans.vim'
+Plug 'morhetz/gruvbox'
+
 
 " Functionalities
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/vim-easy-align'
-" Plug 'alvan/vim-closetag'
-Plug 'tpope/vim-abolish'
-Plug 'Yggdroot/indentLine'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'chrisbra/Colorizer'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'vim-scripts/loremipsum'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'metakirby5/codi.vim'
 Plug 'dkarter/bullets.vim'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " Entertainment
 Plug 'dansomething/vim-hackernews'
 "
-
-"  from fred's init
-" Plug 'junegunn/vim-github-dashboard'
-" Plug 'tpope/vim-rhubarb'
-" Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-markdown'
-" Plug 'airblade/vim-gitgutter'
-" Plug 'skywind3000/asyncrun.vim'
-" Plug 'tomasr/molokai'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'davidhalter/jedi-vim'
-" Plug 'mattn/emmet-vim'
-" Plug 'moll/vim-node'
-" Plug 'pangloss/vim-javascript'
-" Plug 'mxw/vim-jsx'
-" Plug 'lifepillar/pgsql.vim'
-" Plug 'nvie/vim-flake8'
-
-
 call plug#end()
 
-"Editing vimrc
-" if has("autocmd")
-"   autocmd bufwritepost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
-" endif
+set nocompatible
+filetype plugin on
+let g:polyglot_disabled = ['markdown']
+
+
+" Editing vimrc
+ if has("autocmd")
+   autocmd bufwritepost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
+ endif
 """ Python3 VirtualEnv
 let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
 
 """ Coloring
 syntax on
-color dracula
+color gruvbox
 highlight Pmenu guibg=white guifg=black gui=bold
 highlight Comment gui=bold guifg=#a4d692
 highlight Normal gui=none
@@ -155,9 +137,6 @@ let g:NERDTreeWinSize=80
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
-let g:airline_section_warning = ''
-"let g:airline#extensions#tabline#enabled = 1
 
 " Neovim :Terminal
 tmap <Esc> C-\><C-n>
@@ -168,6 +147,8 @@ autocmd BufLeave term://* stopinsert
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#python_path = $VIRTUAL_ENV.'/bin/python'
+
 " Disable documentation window
 set completeopt-=preview
 
@@ -187,9 +168,6 @@ nmap ga <Plug>(EasyAlign)
 let g:indentLine_char = '▏'
 let g:indentLine_color_gui = '#363949'
 
-" TagBar
-let g:tagbar_width = 40
-let g:tagbar_iconchars = ['↠', '↡']
 
 " fzf-vim
 let g:fzf_action = {
@@ -234,7 +212,7 @@ if !exists('g:airline_symbols')
 let g:airline_symbols = {}
 endif
 
-" unicode symbols
+" " unicode symbols
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'
@@ -295,7 +273,7 @@ endfunction
 
 " Dracula Mode (Dark)
 function! ColorDracula()
-    let g:airline_theme=''
+    let g:airline_theme='distinguished'
     color dracula
     IndentLinesEnable
 endfunction
@@ -312,8 +290,10 @@ function! ColorForgotten()
     " Light airline themes: tomorrow, silver, alduin
     " Light colors: forgotten-light, nemo-light
     let g:airline_theme='tomorrow'
-    color forgotten-light
-    IndentLinesDisable
+    color nemo-light
+    IndentLinesEnable
+    set cursorline!
+    set cursorcolumn!
 endfunction
 
 " Zazen Mode (Black & White)
@@ -347,7 +327,7 @@ nmap <leader>e1 :call ColorDracula()<CR>
 nmap <leader>e2 :call ColorSeoul256()<CR>
 nmap <leader>e3 :call ColorForgotten()<CR>
 nmap <leader>e4 :call ColorZazen()<CR>
-nmap <leader>r :so ~/.config/nvim/init.vim<CR>
+nmap <leader>rrc :so ~/.config/nvim/init.vim<CR>
 nmap <leader>rc :tabe ~/.config/nvim/init.vim<CR>
 nmap <leader>tt :call TrimWhitespace()<CR>
 xmap <leader>a gaip*
@@ -355,18 +335,16 @@ nmap <leader>a gaip*
 " nmap <leader>s <C-w>s<C-w>j:terminal<CR>
 " nmap <leader>vs <C-w>v<C-w>l:terminal<CR>
 nmap <leader>d <Plug>(pydocstring)
-nmap <leader>f :Files<CR>
+nmap <leader>f :GitFiles<CR>
 nmap <leader>t :Tags<CR>
-nmap <leader>g :Goyo<CR>
 nmap <leader>h :RainbowParentheses!!<CR>
 nmap <leader>k :ColorToggle<CR>
-nmap <leader>l :Limelight!!<CR>
-xmap <leader>l :Limelight!!<CR>
 " autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
 "nmap <leader>n :HackerNews best<CR>J
 nmap <silent> <leader><leader> :noh<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
+nmap <leader>r source ~/.config/nvim/init.vim
 
 """ Picks from vimrc
 
@@ -419,16 +397,37 @@ map U <C-R>
 " select recent paste
 nmap gV `[v`]
 
+function! FzyCommand(choice_command, vim_command)
+  try
+    let output = system(a:choice_command . " | fzy ")
+  catch /Vim:Interrupt/
+    " Swallow errors from ^C, allow redraw! below
+  endtry
+  redraw!
+  if v:shell_error == 0 && !empty(output)
+    exec a:vim_command . ' ' . output
+  endif
+endfunction
+
+nnoremap <leader>e :call FzyCommand("find . -type f", ":e")<cr>
+nnoremap <leader>v :call FzyCommand("find . -type f", ":vs")<cr>
+nnoremap <leader>s :call FzyCommand("find . -type f", ":sp")<cr>
+
+
 "" These mappings help opening files from current working directory.
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+map <leader>en :e %:h/
 
 " Toggle spell checking on and off with `,s`
-" autocmd FileType * setlocal spell
-nmap <silent> <leader>s :set spell!<CR>
+autocmd FileType * setlocal spell
+autocmd FileType nerdtree setlocal spell!
+autocmd FileType startify setlocal spell!
+autocmd FileType yaml setlocal spell!
+nmap <silent> <leader>ss :set spell!<CR>
 nmap <silent> <leader>z [sz=1<CR>
 nmap <silent> <leader>Z [sz=
 
@@ -479,13 +478,22 @@ nmap <silent> <C-Left> <C-w><
 nmap <silent> <C-Up> <C-w>-
 nmap <silent> <C-Down> <C-w>+
 
+" textwidth
+map <Leader>tw :set textwidth=80<CR>
+
 " ctags
 set tags+=$VIRTUAL_ENV/tags
 
-" " Nvim python environment settings
+" help man vertical
+nmap <leader>H <Esc>:vert help<cr>:vert resize 80<cr>:vert help<space>
+
+" Nvim python environment settings
+"
+let g:pudb_python_launcher= expand($VIRTUAL_ENV.'/bin/python3')
+let g:pudb_breakpoint_symbol='☠'
 " if has('nvim')
-"   let g:python_host_prog='~/.virtualenvs/neovim2/bin/python'
-"   let g:python3_host_prog='~/.virtualenvs/neovim3/bin/python'
+"   " let g:python_host_prog='~/.virtualenvs/neovim2/bin/python'
+"   " let g:python3_host_prog=$VIRTUAL_ENV.'/bin/python'
 "   " set the virtual env python used to launch the debugger
 "   let g:pudb_python=$VIRTUAL_ENV.'/bin/python3'
 "   " set the entry point (script) to use for pudb
@@ -493,3 +501,38 @@ set tags+=$VIRTUAL_ENV/tags
 "   " Unicode symbols work fine (nvim, iterm, tmux, nyovim tested)
 "   let g:pudb_breakpoint_symbol='☠'
 " endif
+
+" vimwiki and markdown preview
+let vim_markdown_preview_github=1
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+"Uncomment to override defaults:
+"let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 0
+"let g:instant_markdown_open_to_the_world = 1
+"let g:instant_markdown_allow_unsafe_content = 1
+"let g:instant_markdown_allow_external_content = 0
+let g:instant_markdown_mathjax = 1
+"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+"let g:instant_markdown_autoscroll = 0
+"let g:instant_markdown_port = 8888
+"let g:instant_markdown_python = 1
+"
+set conceallevel=0
+nnoremap <Space> za
+vnoremap <Space> za
+
+" Pytest
+nmap <silent><Leader><Leader>f <Esc>:Pytest function<CR>
+nmap <silent><Leader><Leader>c <Esc>:Pytest class<CR>
+nmap <silent><Leader><Leader>m <Esc>:Pytest method<CR>
+nmap <silent><Leader><Leader>ff <Esc>:Pytest file<CR>
+
+nnoremap bd :bd<CR>
+nnoremap <leader>c :bp<cr>:bd #<cr>
+
+set timeoutlen=500
+
+" good exit
+nnoremap ZW :update<CR>
