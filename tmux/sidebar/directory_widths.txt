@@ -1,1 +1,9 @@
 /home/billy	146
+/home/billy/workspace/YobotaDatabase	40
+/home/billy/workspace/YobotaDatabase	40
+/home/billy/workspace/yobota-simulation-integrations	40
+/home/billy/workspace/bank-in-a-box	40
+/home/billy/workspace/bank-in-a-box	40
+/home/billy/workspace/bank-in-a-box	40
+/home/billy/workspace/bank-in-a-box	40
+/home/billy/workspace/bank-in-a-box	40

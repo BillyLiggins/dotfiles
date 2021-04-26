@@ -1,10 +1,14 @@
 """ Vim-Plug
 call plug#begin()
 
+Plug 'apalmer1377/factorus'
+Plug 'szw/vim-maximizer'
+Plug 'puremourning/vimspector'
+Plug 'mvanderkamp/vim-pudb-and-jam'
 Plug 'mhinz/vim-startify'
 Plug 'psf/black'
 Plug 'alfredodeza/pytest.vim'
-Plug 'SkyLeach/pudb.vim'
+" Plug 'SkyLeach/pudb.vim'
 Plug 'tpope/vim-rhubarb'
 Plug 'myusuf3/numbers.vim'
 Plug 'vim-scripts/tComment' "Comment easily with gcc
@@ -56,22 +60,23 @@ Plug 'ervandew/supertab'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+let g:polyglot_disabled = ['markdown']
 Plug 'sheerun/vim-polyglot'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'vim-scripts/loremipsum'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'dkarter/bullets.vim'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " Entertainment
 Plug 'dansomething/vim-hackernews'
 "
 call plug#end()
 
+
 set nocompatible
 filetype plugin on
-let g:polyglot_disabled = ['markdown']
 
 
 " Editing vimrc
@@ -194,6 +199,7 @@ let g:fzf_colors =
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
+\ '*': ['remove_trailing_lines'],
 \ 'javascript': ['prettier'],
 \ 'python': ['autopep8', 'remove_trailing_lines']
 \}
@@ -342,8 +348,8 @@ nmap <leader>k :ColorToggle<CR>
 " autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
 "nmap <leader>n :HackerNews best<CR>J
 nmap <silent> <leader><leader> :noh<CR>
-nmap <Tab> :bnext<CR>
-nmap <S-Tab> :bprevious<CR>
+nmap <Tab> :tabnext<CR>
+nmap <S-Tab> :tabprevious<CR>
 nmap <leader>r source ~/.config/nvim/init.vim
 
 """ Picks from vimrc
@@ -385,10 +391,10 @@ map <C-0> :tablast<CR>
 
 " Tab navigation like Firefox.
 nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-tab>   :tabNext<CR>
 " nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-tab>   <Esc>:tabNext<CR>i
+inoremap <C-S-tab> <Esc>:tabPrevious<CR>i
 " inoremap <C-t>     <Esc>:tabnew<CR>
 
 " undo
@@ -460,6 +466,8 @@ nnoremap <leader>gs :20G<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gm :Gmove
 nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
 
 " Scrolloff
 set so=999
@@ -529,10 +537,73 @@ nmap <silent><Leader><Leader>c <Esc>:Pytest class<CR>
 nmap <silent><Leader><Leader>m <Esc>:Pytest method<CR>
 nmap <silent><Leader><Leader>ff <Esc>:Pytest file<CR>
 
-nnoremap bd :bd<CR>
+" nnoremap bd :bd<CR>
 nnoremap <leader>c :bp<cr>:bd #<cr>
 
 set timeoutlen=500
 
 " good exit
 nnoremap ZW :update<CR>
+
+
+nnoremap <leader>bc :<C-U>PudbClearAll<CR>
+nnoremap <leader>be :<C-U>PudbEdit<CR>
+nnoremap <leader>bl :<C-U>PudbList<CR>
+nnoremap <leader>bq :<C-U>PudbQfList<CR>
+nnoremap <leader>bp :<C-U>PudbToggle<CR>
+nnoremap <leader>bu :<C-U>PudbUpdate<CR>
+
+
+
+" vimspector
+
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_install_gadgets = [ 'debugpy' ] "#, 'vscode-cpptools', 'CodeLLDB' ]
+
+fun! GotoWindow(id)
+    call win_gotoid(a:id)
+    " MaximizerToggle
+endfun
+
+" Debugger remaps
+nnoremap <leader>m :MaximizerToggle!<CR>
+nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+nnoremap <leader>de :call vimspector#Reset()<CR>
+
+nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+
+nmap <leader>dl <Plug>VimspectorStepInto
+nmap <leader>dj <Plug>VimspectorStepOver
+nmap <leader>dk <Plug>VimspectorStepOut
+nmap <leader>d_ <Plug>VimspectorRestart
+nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+
+nmap <leader>drc <Plug>VimspectorRunToCursor
+nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+
+
+let g:pudb_highlight = 'error'
+let g:pudb_sign = 'B>'
+
+" Initially set it to "dark" or "light" according to your default
+let s:mybg = "dark"
+function! BgToggleSol()
+    if (s:mybg ==? "light")
+       set background=dark
+       let s:mybg = "dark"
+    else
+       set background=light
+       let s:mybg = "light"
+    endif
+    " set background=light
+    colorscheme gruvbox
+endfunction
+
+nnoremap <silent> <leader>cz :call BgToggleSol()<cr>

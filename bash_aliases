@@ -120,15 +120,6 @@ alias gr="git reset --hard"
 alias lastcommit="git commit --amend"
 alias br_ls="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias wo="workon"
-function woh(){
-    workon `basename $PWD`
-}
-function mkvenvh(){
-    mkvenv `basename $PWD`
-}
-function rmvirtualenvh(){
-    rmvirtualenv `basename $PWD`
-}
 function mkcd {
   if [ ! -n "$1" ]; then
     echo "Enter a directory name"

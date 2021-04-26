@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=/home/billy/.oh-my-zsh
 
@@ -5,7 +12,8 @@ export ZSH=/home/billy/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="mortalscumbag"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="random"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -13,7 +21,7 @@ ZSH_THEME="mortalscumbag"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -31,7 +39,7 @@ ZSH_THEME="mortalscumbag"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -50,13 +58,13 @@ ZSH_THEME="mortalscumbag"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras z zsh-autosuggestions docker vagrant )#vi-mode)
+plugins=(tmux git z docker vagrant python command-time aws django poetry )#vi-mode)
 
 
 
 # User configuration
 
-export PATH="/home/billy/anaconda2/bin:/home/billy/anaconda/bin:/home/billy/anaconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+# export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -90,6 +98,12 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
+. /usr/local/bin/virtualenvwrapper.sh
+function mkvenv(){
+    mkvirtualenv $*
+    setvirtualenvproject
+    pip install -r requirements.txt
+}
 function hlr(){
     heroku local:run $*
 }
@@ -114,20 +128,123 @@ function forrat {
 }
 
 stty -ixon
-#
-# Codi
-# Usage: codi [filetype] [filename]
-codi() {
-  local syntax="${1:-python}"
-  shift
-  vim -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
-}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias vimm='/usr/bin/vim'
+alias vii='/usr/bin/vim'
+alias vim='nvim'
+alias vi='nvim'
+
+# Map caps lock to escape
+setxkbmap -option caps:escape
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="$PATH:/home/billy/development/flutter/bin"
+export PATH="$PATH:/home/billy/packages/node-v10.16.3-linux-x64/bin/"
+
+function woh(){
+    workon `basename $PWD`
+}
+function mkvenvh(){
+    mkvenv `basename $PWD`
+}
+function rmvirtualenvh(){
+    rmvirtualenv `basename $PWD`
+}
+
+function release-lib() {
+    if [ -z "$1" ]
+      then
+        echo "No release version supplied. Use 'release-lib major.minor.patch'"
+        return 1
+    fi
+    git fetch
+    git checkout ci
+    git pull
+    git reset --hard origin/ci
+    git checkout -b "release-$1"
+    scripts/set_version.sh $1
+    git commit -a -m "Increment version to $1"
+    git checkout master
+    git reset --hard origin/master
+    git merge "release-$1" --no-ff
+    git tag $1 -a
+    scripts/distribute.sh
+    git push origin master $1
+    echo "Released $1 - Now pull request from master into ci"
+}
+export TWINE_REPOSITORY=yopy
+# source ~/.bashrc.local
+# source /etc/profile.d/undistract-me.sh
+
+function git-work() {
+    ssh-add -D
+    ssh-add ~/.ssh/id_rsa_work_user1
+}
+
+function git-personal() {
+    ssh-add -D
+    ssh-add ~/.ssh/id_rsa
+}
+git-up () {
+
+  TEMP_PWD=`pwd`
+  while ! [ -d .git ]; do
+  cd ..
+  done
+  OLDPWD=$TEMP_PWD
+
+}
+function gfc() {
+    git fetch origin $1:$1;
+    git co $1
+}
+function gfci() {
+    git fetch origin ci:$1;
+    git co $1
+}
+function gfcm() {
+    git fetch origin master:$1;
+    git co $1
+}
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3.6"
+export WORKON_HOME="${HOME}/.virtualenvs"
+export PROJECT_HOME="${HOME}/workspace"
 export PATH="/home/billy/packages/git-fuzzy/bin:$PATH"
+export PATH="/home/billy/packages/diff-so-fancy/:$PATH"
+. /home/billy/packages/z/z.sh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+
+# Define a few Colours
+BLACK='\e[0;30m'
+BLUE='\e[0;34m'
+GREEN='\e[0;32m'
+CYAN='\e[0;36m'
+RED='\e[0;31m'
+PURPLE='\e[0;35m'
+BROWN='\e[0;33m'
+LIGHTGRAY='\e[0;37m'
+DARKGRAY='\e[1;30m'
+LIGHTBLUE='\e[1;34m'
+LIGHTGREEN='\e[1;32m'
+LIGHTCYAN='\e[1;36m'
+LIGHTRED='\e[1;31m'
+LIGHTPURPLE='\e[1;35m'
+YELLOW='\e[1;33m'
+WHITE='\e[1;37m'
+NC='\e[0m' # No Color
+# WELCOME SCREEN
+################################################## #####
+
+# clear
+
+echo -ne "${LIGHTGREEN}" "Hello, $USER. today is, "; date
+echo -e "${WHITE}"; cal ;
+echo -ne "${CYAN}";
+echo -ne "${LIGHTPURPLE}Sysinfo:";uptime ;echo ""
+
+export PATH="$HOME/.poetry/bin:$PATH"

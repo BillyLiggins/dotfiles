@@ -324,6 +324,16 @@ export PATH="$PATH:/home/billy/packages/node-v10.16.3-linux-x64/bin/"
 #     echo "Released $1 - Now pull request from master into ci"
 # }
 
+function woh(){
+    workon `basename $PWD`
+}
+function mkvenvh(){
+    mkvenv `basename $PWD`
+}
+function rmvirtualenvh(){
+    rmvirtualenv `basename $PWD`
+}
+
 function release-lib() {
     if [ -z "$1" ]
       then
@@ -367,8 +377,17 @@ git-up () {
   OLDPWD=$TEMP_PWD
 
 }
+function _fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+function _fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
 export PATH="/home/billy/packages/git-fuzzy/bin:$PATH"
 . /home/billy/packages/z/z.sh
 
 export PATH="/home/billy/packages/diff-so-fancy/:$PATH"
 export PATH="$HOME/.poetry/bin/:$PATH"
+export PATH="/home/billy/.local/bin:$PATH"
