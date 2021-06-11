@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+
+def format_query(query_terms):
+    joined = "+".join(query_terms)
+    return "https://github.com/search?q={}+org%3AYobota&type=Code".format(joined)
+
+
+if __name__ == "__main__":
+    import sys
+    query_terms = sys.argv[1:]
+    print(format_query(query_terms))

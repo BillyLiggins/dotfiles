@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+
+
+def format_query(query_term):
+    return "https://pypi.fury.io/8MyQ7ADJXAiw35cxDjd2/h_app75879342/{}".format(query_term)
+
+
+if __name__ == "__main__":
+    import sys
+    query_term = sys.argv[1]
+    print(format_query(query_term))

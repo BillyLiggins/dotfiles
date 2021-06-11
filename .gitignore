@@ -1,3 +1,6 @@
 *.swp
 YouCompleteMe
 tmux/resurrect/*txt
+tmux/plugins/
+.tmpLink
+tags

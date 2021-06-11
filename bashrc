@@ -356,7 +356,10 @@ function release-lib() {
     echo "Released $1 - Now pull request from master into ci"
 }
 export TWINE_REPOSITORY=yopy
-source ~/.bashrc.local
+
+if [ -f ~/.bashrc.local ]; then
+    source ~/.bashrc.local
+fi
 # source /etc/profile.d/undistract-me.sh
 
 function git-work() {
