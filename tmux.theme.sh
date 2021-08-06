@@ -4,7 +4,7 @@
 ###tm_icon="🙊"
 tm_icon="∴"
 # tm_icon="🙊"
-tm_color_active=colour39
+tm_color_active=colour46
 tm_color_inactive=colour241
 tm_color_feature=colour10
 tm_color_music=colour198
@@ -22,9 +22,9 @@ set -g status-interval 5
 
 
 # default statusbar colors
-# set-option -g status-bg colour0
+set-option -g status-bg colour0
 set-option -g status-fg $tm_color_active
-set-option -g status-bg default
+# set-option -g status-bg default
 set-option -g status-attr default
 
 # default window title colors
@@ -35,7 +35,7 @@ set -g window-status-format "#I #W"
 # active window title colors
 set-window-option -g window-status-current-fg $tm_color_active
 set-window-option -g window-status-current-bg default
-set-window-option -g  window-status-current-format "#[bold]#I #W"
+set-window-option -g  window-status-current-format "#[bold]#I [#W]"
 
 # pane border
 set-option -g pane-border-fg $tm_color_inactive

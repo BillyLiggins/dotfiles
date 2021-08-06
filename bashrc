@@ -296,7 +296,7 @@ alias vim='nvim'
 alias vi='nvim'
 
 # Map caps lock to escape
-setxkbmap -option caps:escape
+#setxkbmap -option caps:escape
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH="$PATH:/home/billy/development/flutter/bin"

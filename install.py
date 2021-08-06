@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from __future__ import print_function
 import os
@@ -30,14 +30,14 @@ def install():
         os.symlink(abspath(target), tmpLink)
         os.rename(abspath(tmpLink), linkName)
 
-    os.makedirs(join(home, ".config/nvim/", exist_ok=True)
+    os.makedirs(join(home, ".config/nvim/"))#, exist_ok=True))
 
-    print("init.vim", join(home, ".config/nvim/init.vim"))
+    ##print("init.vim", join(home, ".config/nvim/init.vim"))
     os.symlink(abspath("init.vim"), tmpLink)
     os.rename(abspath(tmpLink), join(home, ".config/nvim/init.vim"))
 
     # precommit hook
-    print("Linking git hook")
+    #print("Linking git hook")
     os.symlink(abspath("git-templates/"), tmpLink)
     os.rename(abspath(tmpLink), join(home, ".git-templates"))
 

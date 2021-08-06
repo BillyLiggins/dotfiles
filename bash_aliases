@@ -90,8 +90,9 @@ alias m='less'
 alias lg='logout'
 alias mm='more'
 alias m='less'
-alias o="xdg-open"
-alias open="xdg-open"
+# alias o="xdg-open"
+# alias open="xdg-open"
+alias o="open"
 
 alias vi="nvim"
 alias vim="nvim"
@@ -156,7 +157,7 @@ alias t='tmux attach || tmux new-session'
 
 
 # rgrep
-alias rgrep="rgrep -nI --color --exclude=tags"
+alias rgrep="grep -r -nI --color --exclude=tags"
 alias rgerp="rgrep"
 alias rgrrp="rgrep"
 alias rgeep="rgrep"
@@ -188,10 +189,11 @@ alias tree="tree -I 'CVS|.git|*~'"
 alias jira="bm jira"
 
 # ls
-alias ls="ls -h --color "
+# alias ls="ls -h --color "
 
 alias aws_ls_stubs="aws s3 ls --human-readable s3://yobota-simulation-stubs/ --profile simulation-stubs | sort"
 alias aws_ls_ipython="aws s3 ls --human-readable s3://yobota-ipython-simulation/output/ --profile ipython | sort"
 alias req="vi requirements.txt"
 
 source ~/.docker_alias_rc
+alias pip=pip3

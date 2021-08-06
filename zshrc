@@ -1,12 +1,6 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/billy/.oh-my-zsh
+export ZSH=${HOME}/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -58,7 +52,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(tmux git z docker vagrant python command-time aws django poetry )#vi-mode)
+plugins=(tmux git z docker vagrant python aws django zsh-autosuggestions )#vi-mode)
 
 
 
@@ -71,6 +65,10 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
+
+export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
+export WORKON_HOME="${HOME}/.virtualenvs"
+export PROJECT_HOME="${HOME}/workspace"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -91,8 +89,8 @@ export LANG=en_US.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias zshrc="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh/oh-my-zsh.sh"
 
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
@@ -127,7 +125,7 @@ function forrat {
 	printf "done\n"
 }
 
-stty -ixon
+# stty -ixon
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 alias vimm='/usr/bin/vim'
@@ -136,7 +134,7 @@ alias vim='nvim'
 alias vi='nvim'
 
 # Map caps lock to escape
-setxkbmap -option caps:escape
+# setxkbmap -option caps:escape
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="$PATH:/home/billy/development/flutter/bin"
@@ -195,6 +193,7 @@ git-up () {
   OLDPWD=$TEMP_PWD
 
 }
+alias gu="git-up"
 function gfc() {
     git fetch origin $1:$1;
     git co $1
@@ -207,12 +206,9 @@ function gfcm() {
     git fetch origin master:$1;
     git co $1
 }
-export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3.6"
-export WORKON_HOME="${HOME}/.virtualenvs"
-export PROJECT_HOME="${HOME}/workspace"
-export PATH="/home/billy/packages/git-fuzzy/bin:$PATH"
-export PATH="/home/billy/packages/diff-so-fancy/:$PATH"
-. /home/billy/packages/z/z.sh
+export PATH="${HOME}/packages/git-fuzzy/bin:$PATH"
+export PATH="${HOME}/packages/diff-so-fancy/:$PATH"
+. ${HOME}/packages/z/z.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -248,3 +244,13 @@ echo -ne "${CYAN}";
 echo -ne "${LIGHTPURPLE}Sysinfo:";uptime ;echo ""
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  # source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

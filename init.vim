@@ -1,6 +1,8 @@
 """ Vim-Plug
 call plug#begin()
 
+" Plug 'vim-flake8'
+Plug 'fisadev/vim-isort'
 Plug 'apalmer1377/factorus'
 Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
@@ -489,8 +491,8 @@ nmap <silent> <C-Down> <C-w>+
 " textwidth
 map <Leader>tw :set textwidth=80<CR>
 
-" ctags
-set tags+=$VIRTUAL_ENV/tags
+" " ctags
+" set tags+=$VIRTUAL_ENV/tags
 
 " help man vertical
 nmap <leader>H <Esc>:vert help<cr>:vert resize 80<cr>:vert help<space>
