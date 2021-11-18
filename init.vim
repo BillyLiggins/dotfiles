@@ -17,7 +17,7 @@ Plug 'vim-scripts/tComment' "Comment easily with gcc
 Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
 " " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'hhatto/autopep8'
 Plug 'w0rp/ale'
 Plug 'Chiel92/vim-autoformat'
@@ -55,7 +55,9 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/ddc.vim'
+Plug 'vim-denops/denops.vim'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
@@ -73,7 +75,12 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " Entertainment
 Plug 'dansomething/vim-hackernews'
-"
+
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify'
+else
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
 call plug#end()
 
 
@@ -110,7 +117,7 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 set incsearch ignorecase smartcase hlsearch
 set ruler laststatus=2 showcmd showmode
 set list listchars=trail:»,tab:»-
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 set wrap breakindent
 set encoding=utf-8
 " set number
@@ -154,7 +161,7 @@ autocmd BufLeave term://* stopinsert
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#python_path = $VIRTUAL_ENV.'/bin/python'
+" let g:deoplete#sources#jedi#python_path = $VIRTUAL_ENV.'/bin/python'
 
 " Disable documentation window
 set completeopt-=preview
@@ -201,9 +208,9 @@ let g:fzf_colors =
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
-\ '*': ['remove_trailing_lines'],
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'javascript': ['prettier'],
-\ 'python': ['autopep8', 'remove_trailing_lines']
+\ 'python': ['black', 'remove_trailing_lines']
 \}
 
 " let g:ale_max_line_length=120
