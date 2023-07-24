@@ -33,7 +33,7 @@ HYPHEN_INSENSITIVE="true"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -52,43 +52,19 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(tmux git z docker vagrant python aws django zsh-autosuggestions )#vi-mode)
+plugins=(tmux git docker vagrant python aws)
 
 
-
-# User configuration
-
-# export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
 export WORKON_HOME="${HOME}/.virtualenvs"
 export PROJECT_HOME="${HOME}/workspace"
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
 alias zshrc="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh/oh-my-zsh.sh"
 
@@ -96,7 +72,7 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
-. /usr/local/bin/virtualenvwrapper.sh
+source ~/Library/Python/3.9/bin/virtualenvwrapper.sh
 function mkvenv(){
     mkvirtualenv $*
     setvirtualenvproject
@@ -104,25 +80,6 @@ function mkvenv(){
 }
 function hlr(){
     heroku local:run $*
-}
-
-function snoplus {
-	printf "%-25s" "Loading SNO+ env..."
-	export SNOING=$HOME/snoing
-	export PATH=$SNOING/bin:/usr/bin:$PATH
-	export MAKEFLAGS=-j$(($(nproc)-1))
-	export CXXFLAGS=-D_GLIBCXX_USE_CXX11_ABI=0
-	# source $SNOING/install/env_rat-dev.sh
-	printf "done\n"
-}
-
-function forrat {
-	printf "%-25s" "Loading SNO+ env..."
-	export SNOING=$HOME/snoing
-	export PATH=$SNOING/bin:/usr/bin:$PATH
-	export MAKEFLAGS=-j$(($(nproc)-1))
-	export CXXFLAGS=-D_GLIBCXX_USE_CXX11_ABI=0
-	printf "done\n"
 }
 
 # stty -ixon
@@ -135,10 +92,6 @@ alias vi='nvim'
 
 # Map caps lock to escape
 # setxkbmap -option caps:escape
-
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="$PATH:/home/billy/development/flutter/bin"
-export PATH="$PATH:/home/billy/packages/node-v10.16.3-linux-x64/bin/"
 
 function woh(){
     workon `basename $PWD`
@@ -171,9 +124,6 @@ function release-lib() {
     git push origin master $1
     echo "Released $1 - Now pull request from master into ci"
 }
-export TWINE_REPOSITORY=yopy
-# source ~/.bashrc.local
-# source /etc/profile.d/undistract-me.sh
 
 function git-work() {
     ssh-add -D
@@ -184,14 +134,13 @@ function git-personal() {
     ssh-add -D
     ssh-add ~/.ssh/id_rsa
 }
-git-up () {
 
+git-up () {
   TEMP_PWD=`pwd`
   while ! [ -d .git ]; do
   cd ..
   done
   OLDPWD=$TEMP_PWD
-
 }
 alias gu="git-up"
 function gfc() {
@@ -206,14 +155,6 @@ function gfcm() {
     git fetch origin master:$1;
     git co $1
 }
-export PATH="${HOME}/packages/git-fuzzy/bin:$PATH"
-export PATH="${HOME}/packages/diff-so-fancy/:$PATH"
-. ${HOME}/packages/z/z.sh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
 
 # Define a few Colours
 BLACK='\e[0;30m'
@@ -237,6 +178,13 @@ NC='\e[0m' # No Color
 ################################################## #####
 
 # clear
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 echo -ne "${LIGHTGREEN}" "Hello, $USER. today is, "; date
 echo -e "${WHITE}"; cal ;
@@ -244,13 +192,7 @@ echo -ne "${CYAN}";
 echo -ne "${LIGHTPURPLE}Sysinfo:";uptime ;echo ""
 
 export PATH="$HOME/.poetry/bin:$PATH"
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-  # source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-fi
+export PATH="/Users/billy.liggins/.local/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export GITHUB_TOKEN=???
