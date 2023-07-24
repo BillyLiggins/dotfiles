@@ -1,27 +1,20 @@
 """ Vim-Plug
 call plug#begin()
 
-" Plug 'vim-flake8'
-Plug 'fisadev/vim-isort'
 Plug 'apalmer1377/factorus'
 Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
-Plug 'mvanderkamp/vim-pudb-and-jam'
 Plug 'mhinz/vim-startify'
 Plug 'psf/black'
 Plug 'alfredodeza/pytest.vim'
-" Plug 'SkyLeach/pudb.vim'
 Plug 'tpope/vim-rhubarb'
 Plug 'myusuf3/numbers.vim'
 Plug 'vim-scripts/tComment' "Comment easily with gcc
 Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
-" " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-" Plug 'ludovicchabant/vim-gutentags'
 Plug 'hhatto/autopep8'
 Plug 'w0rp/ale'
 Plug 'Chiel92/vim-autoformat'
-" Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'vimwiki/vimwiki'
 Plug 'justinmk/vim-sneak'
@@ -56,7 +49,7 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/ddc.vim'
-Plug 'vim-denops/denops.vim'
+" Plug 'vim-denops/denops.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
@@ -71,7 +64,7 @@ Plug 'vim-scripts/loremipsum'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'dkarter/bullets.vim'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " Entertainment
 Plug 'dansomething/vim-hackernews'
